@@ -203,7 +203,7 @@ export default function Home() {
       {/* =================================================================
           C. FEATURED COURSES SECTION
          ================================================================= */}
-      <section className="section" style={{ backgroundColor: "var(--bg-secondary)" }}>
+      <section id="courses" className="section" style={{ backgroundColor: "var(--bg-secondary)" }}>
         <div className="container">
           <div className="section-header">
             <span className="section-tag">

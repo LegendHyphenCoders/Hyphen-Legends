@@ -233,7 +233,7 @@ export default function Courses() {
             }}
           >
             <span>
-              Showing <strong>{filteredCourses.length}</strong> of <strong>{courses.length}</strong> courses
+              Showing <strong>{filteredCourses.length}</strong> of <strong>{baseCourses.length}</strong> courses
             </span>
             <span style={{ fontSize: "0.8rem", color: "var(--amber-400)" }}>
               * All course fees are proposed introductory tuition amounts

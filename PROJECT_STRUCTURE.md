@@ -1,6 +1,6 @@
-# SkillNova Academy — Full-Stack Project Architecture & Design System Guide
+# HL Stack — Full-Stack Project Architecture & Design System Guide
 
-This document provides the complete architectural roadmap for **SkillNova Academy**, covering:
+This document provides the complete architectural roadmap for **HL Stack**, covering:
 1. **Full-Stack Project Structure** (Frontend + Proposed Backend)
 2. **Backend Architecture Guide** (Endpoints, Schemas, Controllers, Proxy)
 3. **Hand-Drawn Design System & CSS Guide** (Warm paper tokens, wobbly borders, hard shadows, components)

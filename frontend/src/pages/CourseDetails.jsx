@@ -67,6 +67,14 @@ export default function CourseDetails() {
     };
   }, [slug]);
 
+  useEffect(() => {
+    if (course?.title) {
+      document.title = `${course.title} — HL Stack`;
+    } else {
+      document.title = "Course Details — HL Stack";
+    }
+  }, [course]);
+
   // Module accordion state (first module open by default)
   const [openModuleIndex, setOpenModuleIndex] = useState(0);
 

@@ -22,10 +22,10 @@ export async function createAdmission(req, res, next) {
 
     // Send email notification asynchronously
     sendNotificationEmail({
-      subject: `New Admission Lead: ${fullName} (${courseSlug})`,
+      subject: `New admission inquiry — HL Stack: ${fullName} (${courseSlug})`,
       text: `A new candidate submitted an admission enquiry:\n\nName: ${fullName}\nEmail: ${email}\nPhone: ${phone}\nCourse: ${courseSlug}\nStatus: ${currentStatus}\nPreferred Timing: ${preferredTiming}\nMessage: ${message || 'None'}\n\nSubmitted at: ${admission.createdAt}`,
       html: `
-        <h2>New Admission Lead Received</h2>
+        <h2>New Admission Inquiry — HL Stack</h2>
         <p><strong>Candidate Name:</strong> ${fullName}</p>
         <p><strong>Email:</strong> ${email}</p>
         <p><strong>Phone:</strong> ${phone}</p>

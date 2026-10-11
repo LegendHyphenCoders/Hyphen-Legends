@@ -1,4 +1,4 @@
-# SkillNova Academy — Full-Stack Monorepo
+# HL Stack — Full-Stack Monorepo
 
 A production-ready full-stack EdTech academy platform built with a decoupled architecture:
 - **Frontend**: React + Vite SPA styled with a custom **Hand-Drawn Sketched Paper Design System** (Vanilla CSS, Kalam & Patrick Hand typography, organic wobbly radii, hard offset drop-shadows).
@@ -10,7 +10,7 @@ A production-ready full-stack EdTech academy platform built with a decoupled arc
 ## 📂 Repository Layout
 
 ```text
-skillnova-academy/
+hl-stack/
 ├── frontend/                  # Vite + React app (Vercel deployment)
 │   ├── src/
 │   │   ├── main.jsx, App.jsx
@@ -51,7 +51,7 @@ Follow these exact numbered steps to set up the database, run both services loca
    - For cloud platforms (Render) and local dev: click **Allow Access from Anywhere** (`0.0.0.0/0`).
 5. Under **Deployment → Database**, click **Connect → Drivers → Node.js** to copy your connection string:
    ```env
-   MONGODB_URI=mongodb+srv://<username>:<password>@<cluster>.mongodb.net/skillnova?retryWrites=true&w=majority
+   MONGODB_URI=mongodb+srv://<username>:<password>@<cluster>.mongodb.net/hlstack?retryWrites=true&w=majority
    ```
 
 ---
@@ -72,9 +72,9 @@ Edit `backend/.env` with your MongoDB connection string and settings:
 ```env
 PORT=5000
 NODE_ENV=development
-MONGODB_URI=mongodb+srv://<username>:<password>@<cluster>.mongodb.net/skillnova?retryWrites=true&w=majority
+MONGODB_URI=mongodb+srv://<username>:<password>@<cluster>.mongodb.net/hlstack?retryWrites=true&w=majority
 ALLOWED_ORIGINS=http://localhost:3000,http://localhost:5173
-NOTIFY_EMAIL=admissions@skillnova.edu
+NOTIFY_EMAIL=admissions@hlstack.edu
 ```
 *(SMTP variables can remain blank in development; emails will gracefully fall back to formatted console output without crashing.)*
 
@@ -120,7 +120,7 @@ Open [http://localhost:3000](http://localhost:3000) in your browser. All API req
 2. Go to the [Render Dashboard](https://dashboard.render.com/) and click **New + → Web Service**.
 3. Connect your GitHub repository.
 4. Fill in the service configuration:
-   - **Name**: `skillnova-backend`
+   - **Name**: `hl-stack-backend`
    - **Root Directory**: `backend`
    - **Environment**: `Node`
    - **Build Command**: `npm install`
@@ -130,9 +130,9 @@ Open [http://localhost:3000](http://localhost:3000) in your browser. All API req
    - `PORT`: `10000`
    - `MONGODB_URI`: `<your-mongodb-atlas-connection-string>`
    - `ALLOWED_ORIGINS`: `http://localhost:3000,http://localhost:5173` *(you will add your Vercel URL in Step 6)*
-   - `NOTIFY_EMAIL`: `admissions@skillnova.edu`
+   - `NOTIFY_EMAIL`: `admissions@hlstack.edu`
    - *(Optional)* `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS` if you want live transactional emails.
-6. Click **Create Web Service**. Once deployed, copy your service URL (e.g. `https://skillnova-backend.onrender.com`).
+6. Click **Create Web Service**. Once deployed, copy your service URL (e.g. `https://hl-stack-backend.onrender.com`).
 
 ---
 
@@ -145,18 +145,18 @@ Open [http://localhost:3000](http://localhost:3000) in your browser. All API req
    - **Build Command**: `npm run build`
    - **Output Directory**: `dist`
 4. Under **Environment Variables**, add:
-   - `VITE_API_URL`: `https://skillnova-backend.onrender.com` *(your Render backend URL from Step 4)*
+   - `VITE_API_URL`: `https://hl-stack-backend.onrender.com` *(your Render backend URL from Step 4)*
 5. Click **Deploy**. Vercel will build the frontend with `vercel.json` SPA routing support.
 
 ---
 
 ### Step 6: Cross-Origin Handshake & Final Sync
-1. Copy your newly generated Vercel production URL (e.g. `https://skillnova-academy.vercel.app`).
+1. Copy your newly generated Vercel production URL (e.g. `https://hl-stack.vercel.app`).
 2. Return to your Render backend dashboard:
    - Go to **Environment** tab.
    - Update `ALLOWED_ORIGINS` to include your Vercel URL:
      ```text
-     http://localhost:3000,http://localhost:5173,https://skillnova-academy.vercel.app
+     http://localhost:3000,http://localhost:5173,https://hl-stack.vercel.app
      ```
 3. Save changes. Render will automatically reload the environment with CORS permissions enabled for your Vercel deployment.
 

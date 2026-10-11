@@ -1,5 +1,5 @@
 /**
- * Centralized API Client Configuration for SkillNova Academy.
+ * Centralized API Client Configuration for HL Stack.
  * Resolves base URL from Vite environment variable (VITE_API_URL).
  * Defaults to http://localhost:5000 in local development.
  */

@@ -1,5 +1,5 @@
 /**
- * Centralized Course Catalog for SkillNova Academy.
+ * Centralized Course Catalog for HL Stack.
  * All draft fees and durations are editable in this single file.
  * Prices are strictly labeled as proposed fees to maintain full pricing transparency.
  */

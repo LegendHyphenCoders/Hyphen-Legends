@@ -19,6 +19,10 @@ export default function Courses() {
   const [apiCourses, setApiCourses] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
+  useEffect(() => {
+    document.title = "Explore Courses — HL Stack";
+  }, []);
+
   // Fetch from backend API with automatic fallback to static courses
   useEffect(() => {
     let isMounted = true;

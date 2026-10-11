@@ -1,0 +1,245 @@
+/* ==========================================================================
+   HL Stack - Hand-Drawn Splash Screen
+   Pure CSS keyframe animation; compositor-friendly (transform & opacity only);
+   Theme-aware; Accessible (prefers-reduced-motion & aria-hidden)
+   ========================================================================== */
+
+.hl-splash-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-primary);
+  contain: strict;
+  overflow: hidden;
+  pointer-events: all;
+  will-change: opacity, transform;
+  transition: opacity 350ms cubic-bezier(0.16, 1, 0.3, 1), transform 350ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hl-splash-screen.hl-splash-exit {
+  opacity: 0;
+  transform: scale(1.04);
+  pointer-events: none;
+}
+
+/* Background Doodles */
+.hl-splash-doodle {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0.55;
+  will-change: transform;
+}
+
+.hl-splash-doodle-star {
+  top: 10%;
+  left: 8%;
+  color: var(--color-yellow);
+  animation: hlDoodleFloat 3s ease-in-out infinite alternate;
+}
+
+.hl-splash-doodle-asterisk {
+  top: 12%;
+  right: 9%;
+  color: var(--color-accent);
+  animation: hlDoodleFloat 2.6s ease-in-out infinite alternate-reverse;
+}
+
+.hl-splash-doodle-circle {
+  bottom: 12%;
+  left: 7%;
+  color: var(--color-emerald);
+  animation: hlDoodleFloat 3.2s ease-in-out infinite alternate;
+}
+
+.hl-splash-doodle-squiggle {
+  bottom: 14%;
+  right: 8%;
+  color: var(--color-secondary);
+  animation: hlDoodleFloat 2.8s ease-in-out infinite alternate-reverse;
+}
+
+.hl-splash-doodle-zigzag {
+  top: 48%;
+  right: 5%;
+  color: var(--color-accent);
+  animation: hlDoodleFloat 3.4s ease-in-out infinite alternate;
+}
+
+@keyframes hlDoodleFloat {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  100% {
+    transform: translateY(-8px) rotate(3deg);
+  }
+}
+
+/* Central Content Container */
+.hl-splash-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 90%;
+  max-width: 460px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Wordmark SVG */
+.hl-splash-wordmark-wrap {
+  width: 100%;
+  max-width: 360px;
+  margin-bottom: 1.75rem;
+}
+
+.hl-splash-svg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.hl-splash-text {
+  font-family: var(--font-heading, "Kalam", cursive);
+  font-size: 64px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  fill: var(--fg-pencil);
+  stroke: var(--fg-pencil);
+  stroke-width: 2px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 450;
+  stroke-dashoffset: 450;
+  animation: hlDrawStroke 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards, hlFillIn 0.5s ease 0.8s forwards;
+  fill-opacity: 0;
+}
+
+.hl-splash-underline {
+  stroke: var(--color-accent);
+  stroke-width: 4px;
+  stroke-linecap: round;
+  stroke-dasharray: 220;
+  stroke-dashoffset: 220;
+  fill: none;
+  animation: hlDrawUnderline 0.6s cubic-bezier(0.25, 1, 0.5, 1) 0.5s forwards;
+}
+
+@keyframes hlDrawStroke {
+  0% {
+    stroke-dashoffset: 450;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes hlFillIn {
+  0% {
+    fill-opacity: 0;
+  }
+  100% {
+    fill-opacity: 1;
+  }
+}
+
+@keyframes hlDrawUnderline {
+  0% {
+    stroke-dashoffset: 220;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Wobbly Progress Bar */
+.hl-splash-progress-container {
+  width: 100%;
+  max-width: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.hl-splash-progress-track {
+  width: 100%;
+  height: 18px;
+  background-color: var(--bg-surface);
+  border: 3px solid var(--fg-pencil);
+  border-radius: var(--radius-wobbly-sm, 255px 15px 225px 15px / 15px 225px 15px 255px);
+  box-shadow: var(--shadow-hard, 4px 4px 0 var(--fg-pencil));
+  overflow: hidden;
+  position: relative;
+  padding: 2px;
+}
+
+.hl-splash-progress-bar {
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-accent);
+  border-radius: 4px;
+  transform-origin: left center;
+  transform: scaleX(0);
+  will-change: transform;
+  animation: hlFillProgress 1.4s cubic-bezier(0.22, 1, 0.36, 1) 0.1s forwards;
+}
+
+@keyframes hlFillProgress {
+  0% {
+    transform: scaleX(0);
+  }
+  40% {
+    transform: scaleX(0.45);
+  }
+  75% {
+    transform: scaleX(0.85);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+/* Tape-strip Status Label */
+.hl-splash-tape-label {
+  position: relative;
+  display: inline-block;
+  background-color: var(--bg-postit);
+  color: var(--fg-pencil);
+  font-family: var(--font-body, "Patrick Hand", cursive);
+  font-size: 1.05rem;
+  font-weight: 600;
+  padding: 0.25rem 0.85rem;
+  border-radius: 2px;
+  border: 1px dashed var(--border-subtle);
+  transform: rotate(-1.5deg);
+  box-shadow: 2px 2px 0 var(--border-subtle);
+  user-select: none;
+}
+
+/* Reduced Motion Mode */
+@media (prefers-reduced-motion: reduce) {
+  .hl-splash-screen {
+    transition: opacity 200ms ease;
+  }
+  .hl-splash-doodle {
+    animation: none !important;
+  }
+  .hl-splash-text {
+    animation: none !important;
+    stroke-dashoffset: 0 !important;
+    fill-opacity: 1 !important;
+  }
+  .hl-splash-underline {
+    animation: none !important;
+    stroke-dashoffset: 0 !important;
+  }
+  .hl-splash-progress-bar {
+    animation: none !important;
+    transform: scaleX(1) !important;
+  }
+}

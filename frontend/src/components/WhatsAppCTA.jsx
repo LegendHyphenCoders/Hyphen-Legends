@@ -4,7 +4,7 @@ import { siteConfig } from "../config/site";
 
 /**
  * Reusable WhatsApp CTA component.
- * Links directly to the official SkillNova Academy WhatsApp channel:
+ * Links directly to the official HL Stack WhatsApp channel:
  * https://whatsapp.com/channel/0029VbDpAjNFMqrYPjEV2916
  */
 export default function WhatsAppCTA({
@@ -28,7 +28,7 @@ export default function WhatsAppCTA({
         target="_blank"
         rel="noopener noreferrer"
         className="whatsapp-floating-btn"
-        aria-label="Join SkillNova Academy WhatsApp Channel"
+        aria-label="Join HL Stack WhatsApp Channel"
         title="Join our WhatsApp Channel"
       >
         <MessageCircle size={26} />

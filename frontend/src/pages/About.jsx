@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import {
   Sparkles,
@@ -20,6 +20,10 @@ import Button from "../components/Button";
 import WhatsAppCTA from "../components/WhatsAppCTA";
 
 export default function About() {
+  useEffect(() => {
+    document.title = "Academic Philosophy & Mission — HL Stack";
+  }, []);
+
   return (
     <div className="about-page">
       {/* Hero Section */}

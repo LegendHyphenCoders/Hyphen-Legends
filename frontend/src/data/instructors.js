@@ -1,5 +1,5 @@
 /**
- * Instructor Profiles for SkillNova Academy.
+ * Instructor Profiles for HL Stack.
  * IMPORTANT: These are clearly marked as SAMPLE PLACEHOLDER PROFILES.
  * You can replace these with verified instructor names, bios, and credentials
  * as instructors join your teaching team.

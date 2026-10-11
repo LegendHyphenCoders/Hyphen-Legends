@@ -70,7 +70,7 @@ app.use(errorHandler);
 // Start HTTP Listener
 app.listen(PORT, () => {
   console.log(`\n======================================================`);
-  console.log(`🚀 SkillNova Academy Backend listening on port: ${PORT}`);
+  console.log(`🚀 HL Stack Backend listening on port: ${PORT}`);
   console.log(`🌐 Allowed Origins: ${allowedOrigins.join(', ')}`);
   console.log(`🩺 Health check: http://localhost:${PORT}/api/health`);
   console.log(`======================================================\n`);

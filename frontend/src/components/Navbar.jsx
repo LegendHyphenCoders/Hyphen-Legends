@@ -53,7 +53,7 @@ export default function Navbar() {
           </div>
           <div className="logo-text-group">
             <span className="logo-title">
-              Skill<span>Nova</span>
+              HL<span>Stack</span>
             </span>
             <span className="logo-tagline">IT Training Academy</span>
           </div>

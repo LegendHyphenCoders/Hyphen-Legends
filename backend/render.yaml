@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: skillnova-backend
+    name: hl-stack-backend
     env: node
     plan: free
     rootDir: backend
@@ -16,7 +16,7 @@ services:
       - key: ALLOWED_ORIGINS
         sync: false
       - key: NOTIFY_EMAIL
-        value: admissions@skillnova.edu
+        value: admissions@hlstack.edu
       - key: SMTP_HOST
         sync: false
       - key: SMTP_PORT

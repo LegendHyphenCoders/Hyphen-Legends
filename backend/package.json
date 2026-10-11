@@ -1,9 +1,9 @@
 {
-  "name": "skillnova-academy-backend",
+  "name": "hl-stack-backend",
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "Production Express & MongoDB Atlas backend for SkillNova Academy",
+  "description": "Production Express & MongoDB Atlas backend for HL Stack",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",

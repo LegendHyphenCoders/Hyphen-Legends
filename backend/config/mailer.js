@@ -28,7 +28,7 @@ if (isSmtpConfigured) {
  * Send notification email or log to console in dev mode.
  */
 export async function sendNotificationEmail({ subject, html, text }) {
-  const recipient = process.env.NOTIFY_EMAIL || 'admissions@skillnova.edu';
+  const recipient = process.env.NOTIFY_EMAIL || 'admissions@hlstack.edu';
 
   if (!transporter) {
     console.log('\n[MAILER MOCK (SMTP not configured)]');
@@ -41,7 +41,7 @@ export async function sendNotificationEmail({ subject, html, text }) {
 
   try {
     const info = await transporter.sendMail({
-      from: `"SkillNova Academy" <${process.env.SMTP_USER}>`,
+      from: `"HL Stack" <${process.env.SMTP_USER}>`,
       to: recipient,
       subject,
       text,

@@ -1,31 +1,31 @@
 /**
- * Centralized Site and Brand Configuration for SkillNova Academy.
+ * Centralized Site and Brand Configuration for HL Stack.
  * Easily update brand names, contact info, WhatsApp number, and social links here.
  */
 
 export const siteConfig = {
-  name: "SkillNova Academy",
-  shortName: "SkillNova",
+  name: "HL Stack",
+  shortName: "HL Stack",
   tagline: "Build Real Skills. Create Your Future.",
   description:
     "Learn practical technology skills through live online classes, hands-on projects, and mentor-led guidance.",
-  url: "https://skillnova-academy.example.com",
+  url: "https://hlstack.edu",
   
   // WhatsApp Configuration
-  // Official SkillNova Academy WhatsApp Channel
+  // Official HL Stack WhatsApp Channel
   whatsapp: {
     channelUrl: "https://whatsapp.com/channel/0029VbDpAjNFMqrYPjEV2916",
     url: "https://whatsapp.com/channel/0029VbDpAjNFMqrYPjEV2916",
     number: "919876543210", 
     defaultMessage:
-      "Hello SkillNova Academy! I would like to learn more about your live online IT training courses and upcoming batch schedules.",
+      "Hi HL Stack! I would like to learn more about your live online IT training courses and upcoming batch schedules.",
     isConfigured: true,
   },
 
   // Contact Information
   contact: {
-    email: "admissions@skillnova.edu",
-    supportEmail: "support@skillnova.edu",
+    email: "admissions@hlstack.edu",
+    supportEmail: "support@hlstack.edu",
     phone: "+91 98765 43210",
     phoneDisplay: "+91 (0) 98765-43210",
     address: {
@@ -97,7 +97,7 @@ export const siteConfig = {
   // Note on pricing & credentials
   transparencyNotice: {
     pricingNotice: "All fees displayed are proposed introductory tuition fees. Final schedule and batch dates are confirmed upon enrollment counselling.",
-    cohortNotice: "SkillNova Academy is currently onboarding upcoming cohorts. Detailed placement records and graduate case studies will be published as cohorts graduate.",
+    cohortNotice: "HL Stack is currently onboarding upcoming cohorts. Detailed placement records and graduate case studies will be published as cohorts graduate.",
     demoNotice: "Admissions demo inquiry submissions are processed directly through WhatsApp or demo preview without silent discarding.",
   },
 };

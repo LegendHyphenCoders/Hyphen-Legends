@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import {
   Sparkles,
@@ -27,6 +27,10 @@ import FAQAccordion from "../components/FAQAccordion";
 import WhatsAppCTA from "../components/WhatsAppCTA";
 
 export default function Home() {
+  useEffect(() => {
+    document.title = "HL Stack — Learn by Building";
+  }, []);
+
   const [activeCategory, setActiveCategory] = useState("All");
 
   const categories = ["All", "Data & AI", "Software Engineering", "Business & Finance"];

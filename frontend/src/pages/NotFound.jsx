@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Compass, ArrowRight, Home, BookOpen } from "lucide-react";
 import Button from "../components/Button";
 
 export default function NotFound() {
+  useEffect(() => {
+    document.title = "404 Page Not Found — HL Stack";
+  }, []);
+
   return (
     <div
       className="not-found-page section"

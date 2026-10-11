@@ -19,10 +19,10 @@ export async function createContactMessage(req, res, next) {
 
     // Send email notification asynchronously
     sendNotificationEmail({
-      subject: `New Contact Inquiry from ${fullName}`,
+      subject: `New contact message — HL Stack: ${fullName}`,
       text: `A new message was submitted via the contact form:\n\nName: ${fullName}\nEmail: ${email}\nPhone: ${phone || 'Not provided'}\nMessage: ${message}\n\nSubmitted at: ${contact.createdAt}`,
       html: `
-        <h2>New Contact Inquiry</h2>
+        <h2>New Contact Message — HL Stack</h2>
         <p><strong>Name:</strong> ${fullName}</p>
         <p><strong>Email:</strong> ${email}</p>
         <p><strong>Phone:</strong> ${phone || 'Not provided'}</p>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import {
   Mail,
@@ -25,6 +25,10 @@ import Button from "../components/Button";
 export default function Contact() {
   const [searchParams] = useSearchParams();
   const preselectedCourse = searchParams.get("course") || "";
+
+  useEffect(() => {
+    document.title = "Admissions & Inquiries — HL Stack";
+  }, []);
 
   // Tab state: 'admission' or 'general'
   const [activeTab, setActiveTab] = useState("admission");
@@ -116,7 +120,7 @@ export default function Contact() {
           <span className="section-tag">
             <Sparkles size={14} /> Admissions &amp; Inquiries
           </span>
-          <h1>Get in Touch with SkillNova Academy</h1>
+          <h1>Get in Touch with HL Stack</h1>
           <p>
             Have questions about upcoming cohorts, tuition, or technical curriculum? Submit an inquiry below or chat directly with our academic team on WhatsApp.
           </p>

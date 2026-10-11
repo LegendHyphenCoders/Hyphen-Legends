@@ -4,6 +4,7 @@ import { GraduationCap, Menu, X, ArrowRight, MessageCircle } from "lucide-react"
 import { siteConfig } from "../config/site";
 import Button from "./Button";
 import WhatsAppCTA from "./WhatsAppCTA";
+import ThemeToggle from "./ThemeToggle";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -73,6 +74,7 @@ export default function Navbar() {
 
         {/* Desktop Actions */}
         <div className="nav-desktop-actions">
+          <ThemeToggle />
           <WhatsAppCTA variant="compact" />
           <Button to="/courses" variant="primary" size="sm" icon={ArrowRight} iconPosition="right">
             Explore Courses
@@ -107,6 +109,7 @@ export default function Navbar() {
         </nav>
 
         <div className="mobile-nav-actions">
+          <ThemeToggle showLabel={true} className="theme-toggle-mobile" />
           <Button
             to="/courses"
             variant="primary"

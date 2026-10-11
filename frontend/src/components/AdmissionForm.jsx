@@ -150,11 +150,11 @@ export default function AdmissionForm({ defaultCourseSlug, onFormSuccess }) {
         </p>
 
         {/* Database confirmation badge */}
-        <div className="demo-mode-banner mt-3 text-left" style={{ background: "#e8f5e9", borderColor: "#2e7d32" }}>
-          <Sparkles size={20} color="#2e7d32" />
+        <div className="form-banner-success mt-3 text-left">
+          <Sparkles size={20} color="var(--color-emerald)" />
           <div>
-            <strong style={{ color: "#2e7d32" }}>Confirmed &amp; Dispatched:</strong>
-            <p className="mt-1" style={{ color: "#1b5e20", margin: 0 }}>
+            <strong style={{ color: "var(--color-emerald)" }}>Confirmed &amp; Dispatched:</strong>
+            <p className="mt-1" style={{ color: "var(--fg-pencil)", margin: 0 }}>
               Your inquiry has been stored securely in MongoDB Atlas. Our admissions coordinator will contact you via WhatsApp / Email with batch slots and syllabus.
             </p>
           </div>
@@ -198,10 +198,10 @@ export default function AdmissionForm({ defaultCourseSlug, onFormSuccess }) {
       <div className="tape-strip" aria-hidden="true" />
       
       {serverError && (
-        <div className="demo-mode-banner mb-4" style={{ borderColor: "var(--color-marker-red)", background: "#fff5f5" }}>
-          <AlertCircle size={20} color="var(--color-marker-red)" />
+        <div className="form-banner-error mb-4">
+          <AlertCircle size={20} color="var(--color-accent)" />
           <div>
-            <strong style={{ color: "var(--color-marker-red)" }}>Submission Notice:</strong>
+            <strong style={{ color: "var(--color-accent)" }}>Submission Notice:</strong>
             <p className="mt-0.5" style={{ color: "var(--fg-pencil)" }}>{serverError}</p>
           </div>
         </div>

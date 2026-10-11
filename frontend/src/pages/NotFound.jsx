@@ -32,7 +32,7 @@ export default function NotFound() {
               width: "76px",
               height: "76px",
               borderRadius: "var(--radius-wobbly-circle)",
-              background: "#ffffff",
+              background: "var(--bg-surface)",
               border: "2.5px solid var(--fg-pencil)",
               color: "var(--color-accent)",
               display: "flex",

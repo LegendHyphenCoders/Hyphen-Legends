@@ -95,21 +95,23 @@ export default function About() {
                       style={{
                         width: "32px",
                         height: "32px",
-                        borderRadius: "8px",
-                        background: "rgba(99, 102, 241, 0.15)",
-                        color: "var(--primary-400)",
+                        borderRadius: "var(--radius-wobbly-circle)",
+                        background: "var(--bg-postit)",
+                        border: "1.5px solid var(--fg-pencil)",
+                        color: "var(--fg-pencil)",
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "center",
                         flexShrink: 0,
                         fontWeight: "700",
-                        fontSize: "0.85rem",
+                        fontSize: "0.95rem",
+                        boxShadow: "1px 1px 0px 0px var(--fg-pencil)",
                       }}
                     >
                       {idx + 1}
                     </div>
                     <div>
-                      <h4 style={{ fontSize: "1rem", marginBottom: "0.2rem", color: "#ffffff" }}>
+                      <h4 style={{ fontSize: "1.1rem", marginBottom: "0.2rem", color: "var(--fg-pencil)" }}>
                         {pillar.title}
                       </h4>
                       <p style={{ fontSize: "0.875rem", color: "var(--text-muted)", lineHeight: "1.5" }}>

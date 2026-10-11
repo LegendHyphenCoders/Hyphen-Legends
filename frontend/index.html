@@ -8,7 +8,28 @@
       name="description"
       content="Learn practical technology skills through live online classes, hands-on projects, and mentor-led guidance at SkillNova Academy."
     />
-    <meta name="theme-color" content="#fdfbf7" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#fdfbf7" id="theme-color-meta" />
+
+    <!-- Anti-Flash Blocking Theme Script (Runs synchronously before initial paint) -->
+    <script>
+      (function () {
+        try {
+          var saved = localStorage.getItem("theme");
+          var theme = saved;
+          if (theme !== "dark" && theme !== "light") {
+            theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+          }
+          document.documentElement.dataset.theme = theme;
+          var meta = document.getElementById("theme-color-meta");
+          if (meta) {
+            meta.setAttribute("content", theme === "dark" ? "#131110" : "#fdfbf7");
+          }
+        } catch (e) {
+          document.documentElement.dataset.theme = "light";
+        }
+      })();
+    </script>
 
     <!-- Google Fonts: Kalam (Headings / Felt-tip Marker) & Patrick Hand (Body / Handwritten) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />

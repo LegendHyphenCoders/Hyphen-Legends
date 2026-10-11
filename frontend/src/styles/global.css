@@ -48,10 +48,15 @@
   --radius-wobbly-badge: 15px 225px 15px 255px / 255px 15px 225px 15px;
   --radius-wobbly-circle: 50% 55% 45% 52% / 53% 47% 53% 48%;
 
+  /* Shadows & Pattern Tokens */
+  --shadow-color: var(--fg-pencil);
+  --shadow-color-subtle: rgba(45, 45, 45, 0.15);
+  --pattern-dot: #e5e0d8;
+
   /* Hard Offset Box Shadows (Zero Blur, Cut-Paper Collage Feel) */
-  --shadow-hard-xs: 2px 2px 0px 0px var(--fg-pencil);
-  --shadow-hard: 4px 4px 0px 0px var(--fg-pencil);
-  --shadow-hard-lg: 8px 8px 0px 0px var(--fg-pencil);
+  --shadow-hard-xs: 2px 2px 0px 0px var(--shadow-color);
+  --shadow-hard: 4px 4px 0px 0px var(--shadow-color);
+  --shadow-hard-lg: 8px 8px 0px 0px var(--shadow-color);
   --shadow-hard-blue: 4px 4px 0px 0px var(--color-secondary);
   --shadow-hard-red: 4px 4px 0px 0px var(--color-accent);
 
@@ -91,7 +96,7 @@ body {
   flex-direction: column;
   background-color: var(--bg-primary);
   /* Notebook paper grain dot pattern */
-  background-image: radial-gradient(#e5e0d8 1.5px, transparent 1.5px);
+  background-image: radial-gradient(var(--pattern-dot) 1.5px, transparent 1.5px);
   background-size: 24px 24px;
   line-height: 1.6;
   overflow-x: hidden;
@@ -251,7 +256,7 @@ img {
   border-radius: var(--radius-wobbly);
   cursor: pointer;
   border: 3px solid var(--fg-pencil);
-  background: #ffffff;
+  background: var(--bg-surface);
   color: var(--fg-pencil);
   box-shadow: var(--shadow-hard);
   transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast), color var(--transition-fast);
@@ -278,7 +283,7 @@ img {
 }
 
 .btn-primary {
-  background: #ffffff;
+  background: var(--bg-surface);
   color: var(--fg-pencil);
 }
 
@@ -308,7 +313,7 @@ img {
 }
 
 .btn-whatsapp {
-  background: #ffffff;
+  background: var(--bg-surface);
   color: var(--fg-pencil);
   border-color: var(--fg-pencil);
 }
@@ -466,14 +471,14 @@ img {
 
 .form-input, .form-select, .form-textarea {
   width: 100%;
-  background: #ffffff;
+  background: var(--bg-surface);
   border: 2.5px solid var(--fg-pencil);
   border-radius: var(--radius-wobbly-sm);
   padding: 0.75rem 1rem;
   color: var(--fg-pencil);
   font-family: var(--font-body);
   font-size: 1.15rem;
-  box-shadow: 2px 2px 0px 0px var(--fg-pencil);
+  box-shadow: 2px 2px 0px 0px var(--shadow-color);
   transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
 }
 
@@ -497,7 +502,7 @@ img {
 }
 
 .form-select option {
-  background: #ffffff;
+  background: var(--bg-surface);
   color: var(--fg-pencil);
   font-family: var(--font-body);
 }

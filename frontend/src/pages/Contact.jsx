@@ -215,13 +215,10 @@ export default function Contact() {
                 <div className="tape-strip" aria-hidden="true" />
 
                 {serverError && (
-                  <div
-                    className="demo-mode-banner mb-4"
-                    style={{ borderColor: "var(--color-marker-red)", background: "#fff5f5" }}
-                  >
-                    <AlertCircle size={20} color="var(--color-marker-red)" />
+                  <div className="form-banner-error mb-4">
+                    <AlertCircle size={20} color="var(--color-accent)" />
                     <div>
-                      <strong style={{ color: "var(--color-marker-red)" }}>Submission Notice:</strong>
+                      <strong style={{ color: "var(--color-accent)" }}>Submission Notice:</strong>
                       <p className="mt-0.5" style={{ color: "var(--fg-pencil)" }}>{serverError}</p>
                     </div>
                   </div>
@@ -350,7 +347,7 @@ export default function Contact() {
                     width: "48px",
                     height: "48px",
                     borderRadius: "var(--radius-wobbly-circle)",
-                    background: "#ffffff",
+                    background: "var(--bg-surface)",
                     border: "2px solid var(--fg-pencil)",
                     color: "var(--color-whatsapp)",
                     display: "flex",

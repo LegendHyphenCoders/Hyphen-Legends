@@ -1,0 +1,252 @@
+/* ==========================================================================
+   SkillNova Academy - Dark Theme ("Midnight Sketchbook")
+   Style: Drawing on dark sketchbook with neon-ish chalk pencil & marker ink.
+   Preserves: Wobbly organic border radii, hard zero-blur offset shadows,
+   masking tape, post-its, thumbtacks, and handwritten Kalam & Patrick Hand fonts.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   DARK THEME TOKEN MAPPINGS
+   -------------------------------------------------------------------------- */
+[data-theme="dark"] {
+  /* Dark Paper Surfaces */
+  --bg-primary: #131110;           /* Very dark warm charcoal (not cold gray) */
+  --bg-secondary: #1b1917;         /* Dark notepad alternate paper */
+  --bg-surface: #221f1c;           /* Dark sketchbook card surface */
+  --bg-surface-elevated: #282420;  /* Elevated dark card */
+  --bg-muted: #2e2a26;             /* Erased-pencil dark */
+  --bg-postit: #4a4420;            /* Dark post-it: muted mustard sticky note */
+  --bg-postit-tape: rgba(70, 65, 58, 0.65); /* Translucent tape visible on dark */
+
+  /* Inks & Pencil Foregrounds (Light on Dark) */
+  --fg-pencil: #ece5d8;            /* Warm chalk-pencil light */
+  --text-primary: #ece5d8;         /* Primary chalk-pencil text */
+  --text-secondary: #c9c0ae;       /* Secondary notes */
+  --text-muted: #9a917f;           /* Faint scribbles */
+  --text-dim: #787062;             /* Dim pencil marks */
+
+  /* Distinct Ink Accents (Brightened for dark contrast) */
+  --color-accent: #ff6b6b;         /* Neon-ish red marker */
+  --color-accent-hover: #ff8585;
+  --color-secondary: #6ea8ff;      /* Blue ballpoint / neon cyan */
+  --color-secondary-hover: #8cbaff;
+  --color-whatsapp: #25d366;       /* WhatsApp green */
+  --color-whatsapp-hover: #2ee272;
+  --color-yellow: #4a4420;
+  --color-emerald: #4ade80;        /* Bright green pen */
+  --color-amber: #f59e0b;          /* Bright orange pen */
+
+  /* Hard Offset Box Shadows (Visible on dark backgrounds) */
+  --shadow-color: rgba(0, 0, 0, 0.75);
+  --shadow-color-subtle: rgba(0, 0, 0, 0.45);
+  --shadow-hard-xs: 2px 2px 0px 0px var(--shadow-color);
+  --shadow-hard: 4px 4px 0px 0px var(--shadow-color);
+  --shadow-hard-lg: 8px 8px 0px 0px var(--shadow-color);
+  --shadow-hard-blue: 4px 4px 0px 0px rgba(110, 168, 255, 0.45);
+  --shadow-hard-red: 4px 4px 0px 0px rgba(255, 107, 107, 0.45);
+
+  /* Borders */
+  --border-subtle: 2px dashed rgba(236, 229, 216, 0.2);
+  --border-medium: 2px solid rgba(236, 229, 216, 0.5);
+  --border-accent: 2px solid var(--color-accent);
+
+  /* Dot Grid Pattern */
+  --pattern-dot: rgba(236, 229, 216, 0.08);
+}
+
+/* --------------------------------------------------------------------------
+   COMPONENT-LEVEL DARK THEME ADJUSTMENTS
+   -------------------------------------------------------------------------- */
+
+/* Body & Mobile Nav dot grid in Dark Mode */
+[data-theme="dark"] body,
+[data-theme="dark"] .mobile-nav-drawer {
+  background-image: radial-gradient(var(--pattern-dot) 1.5px, transparent 1.5px);
+}
+
+/* Header scrolled state in Dark Mode */
+[data-theme="dark"] .site-header.scrolled {
+  background: var(--bg-surface);
+  box-shadow: 0 4px 0px 0px var(--shadow-color);
+}
+
+/* Badges: WCAG AA contrast against dark backgrounds */
+[data-theme="dark"] .badge-indigo {
+  background: rgba(110, 168, 255, 0.16);
+  color: #8cbaff;
+  border-color: #8cbaff;
+}
+
+[data-theme="dark"] .badge-cyan {
+  background: rgba(56, 189, 248, 0.16);
+  color: #38bdf8;
+  border-color: #38bdf8;
+}
+
+[data-theme="dark"] .badge-emerald {
+  background: rgba(74, 222, 128, 0.16);
+  color: #4ade80;
+  border-color: #4ade80;
+}
+
+[data-theme="dark"] .badge-amber {
+  background: rgba(245, 158, 11, 0.18);
+  color: #fbbf24;
+  border-color: #fbbf24;
+}
+
+[data-theme="dark"] .badge-red {
+  background: rgba(255, 107, 107, 0.18);
+  color: #ff8585;
+  border-color: #ff8585;
+}
+
+/* Highlighter: Soft neon-yellow marker on dark paper */
+[data-theme="dark"] .marker-highlight {
+  background: linear-gradient(104deg, rgba(250, 204, 21, 0.25) 0.9%, rgba(250, 204, 21, 0.12) 98.4%);
+  color: #fef08a;
+}
+
+/* Form selects: Inverted white stroke chevron */
+[data-theme="dark"] .form-select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%23ece5d8' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+}
+
+[data-theme="dark"] .form-select option {
+  background: var(--bg-surface);
+  color: var(--fg-pencil);
+}
+
+/* Form Banners: Accessible error & success states */
+.form-banner-error {
+  background: rgba(255, 77, 77, 0.1);
+  border: 2px dashed var(--color-accent);
+  border-radius: var(--radius-wobbly-sm);
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  color: var(--fg-pencil);
+}
+
+[data-theme="dark"] .form-banner-error {
+  background: rgba(255, 107, 107, 0.15);
+}
+
+.form-banner-success {
+  background: rgba(21, 128, 61, 0.12);
+  border: 2px dashed var(--color-emerald);
+  border-radius: var(--radius-wobbly-sm);
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  color: var(--fg-pencil);
+}
+
+[data-theme="dark"] .form-banner-success {
+  background: rgba(74, 222, 128, 0.16);
+}
+
+/* Lined Notepad Repeating Background (lightened for dark theme) */
+.notepad-lines {
+  background-image: repeating-linear-gradient(
+    transparent,
+    transparent 27px,
+    rgba(45, 45, 45, 0.12) 28px
+  );
+}
+
+[data-theme="dark"] .notepad-lines {
+  background-image: repeating-linear-gradient(
+    transparent,
+    transparent 27px,
+    rgba(236, 229, 216, 0.1) 28px
+  );
+}
+
+/* Subtle Dark Mode Image Treatment:
+   Softens bright white backgrounds/photos without inverting colors or distorting illustrations */
+[data-theme="dark"] img {
+  filter: brightness(0.92) contrast(1.05);
+}
+
+/* --------------------------------------------------------------------------
+   THEME TOGGLE BUTTON STYLING
+   Hand-drawn wobbly button with flat-press animation
+   -------------------------------------------------------------------------- */
+.theme-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  padding: 0.5rem 0.85rem;
+  background: var(--bg-surface);
+  border: 2.5px solid var(--fg-pencil);
+  border-radius: var(--radius-wobbly-sm);
+  color: var(--fg-pencil);
+  box-shadow: var(--shadow-hard-xs);
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  font-weight: 700;
+  user-select: none;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast), color var(--transition-fast);
+}
+
+.theme-toggle-btn:hover {
+  background: var(--bg-postit);
+  transform: rotate(-1.5deg) translate(1px, 1px);
+}
+
+.theme-toggle-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 0px 0px 0px 0px var(--shadow-color);
+}
+
+.theme-toggle-btn:focus-visible {
+  outline: 2px dashed var(--color-secondary);
+  outline-offset: 3px;
+}
+
+.theme-toggle-icon-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.theme-sketch-icon {
+  stroke-width: 2.5;
+  transition: transform 220ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  display: block;
+}
+
+.theme-toggle-btn:hover .theme-sketch-icon {
+  transform: rotate(18deg) scale(1.1);
+}
+
+.theme-toggle-label {
+  font-size: 1.05rem;
+  letter-spacing: 0.01em;
+}
+
+/* Mobile drawer full-width theme toggle */
+.theme-toggle-mobile {
+  width: 100%;
+  justify-content: center;
+  padding: 0.75rem 1.25rem;
+  font-size: 1.15rem;
+  border-radius: var(--radius-wobbly);
+}
+
+/* Accessibility: Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .theme-toggle-btn,
+  .theme-sketch-icon,
+  .site-header {
+    transition: none !important;
+    transform: none !important;
+  }
+}

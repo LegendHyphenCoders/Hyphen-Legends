@@ -15,8 +15,8 @@
 }
 
 .site-header.scrolled {
-  box-shadow: 0 4px 0px 0px var(--fg-pencil);
-  background: #ffffff;
+  box-shadow: 0 4px 0px 0px var(--shadow-color);
+  background: var(--bg-surface);
 }
 
 .nav-container {
@@ -143,7 +143,7 @@
   right: 0;
   bottom: 0;
   background: var(--bg-primary);
-  background-image: radial-gradient(#e5e0d8 1.5px, transparent 1.5px);
+  background-image: radial-gradient(var(--pattern-dot) 1.5px, transparent 1.5px);
   background-size: 24px 24px;
   z-index: 99;
   padding: 2rem;
@@ -241,7 +241,7 @@
   width: 42px;
   height: 42px;
   border-radius: var(--radius-wobbly-circle);
-  background: #ffffff;
+  background: var(--bg-surface);
   border: 2px solid var(--fg-pencil);
   box-shadow: 2px 2px 0px 0px var(--fg-pencil);
   display: flex;
@@ -337,7 +337,7 @@
 
 /* Course Card Component */
 .course-card {
-  background: #ffffff;
+  background: var(--bg-surface);
   border: 2.5px solid var(--fg-pencil);
   border-radius: var(--radius-wobbly-md);
   box-shadow: var(--shadow-hard);
@@ -615,7 +615,7 @@
 }
 
 .modal-close-btn {
-  background: #ffffff;
+  background: var(--bg-surface);
   border: 2px solid var(--fg-pencil);
   color: var(--fg-pencil);
   cursor: pointer;
@@ -647,7 +647,7 @@
 
 .code-snippet-box {
   margin-top: 0.75rem;
-  background: #ffffff;
+  background: var(--bg-surface);
   border: 2px solid var(--fg-pencil);
   padding: 0.75rem 1rem;
   border-radius: var(--radius-wobbly-sm);
@@ -673,7 +673,7 @@
 
 /* Filters & Search Toolbar */
 .catalog-toolbar {
-  background: #ffffff;
+  background: var(--bg-surface);
   border: 2.5px solid var(--fg-pencil);
   border-radius: var(--radius-wobbly-md);
   box-shadow: var(--shadow-hard);
@@ -722,7 +722,7 @@
   font-family: var(--font-body);
   font-weight: 700;
   border-radius: var(--radius-wobbly-badge);
-  background: #ffffff;
+  background: var(--bg-surface);
   border: 2px solid var(--fg-pencil);
   color: var(--fg-pencil);
   box-shadow: 2px 2px 0px 0px var(--fg-pencil);
@@ -761,7 +761,7 @@
   height: 64px;
   margin: 0 auto 1.25rem auto;
   border-radius: var(--radius-wobbly-circle);
-  background: #ffffff;
+  background: var(--bg-surface);
   border: 2.5px solid var(--fg-pencil);
   box-shadow: 2px 2px 0px 0px var(--fg-pencil);
   display: flex;
@@ -789,7 +789,7 @@
 }
 
 .faq-card {
-  background: #ffffff;
+  background: var(--bg-surface);
   border: 2.5px solid var(--fg-pencil);
   border-radius: var(--radius-wobbly-md);
   box-shadow: var(--shadow-hard);
@@ -876,7 +876,7 @@
 }
 
 .journey-step-card {
-  background: #ffffff;
+  background: var(--bg-surface);
   border: 2.5px solid var(--fg-pencil);
   border-radius: var(--radius-wobbly-md);
   box-shadow: var(--shadow-hard);
@@ -906,14 +906,15 @@
   font-family: var(--font-heading);
   font-size: 2.75rem;
   font-weight: 700;
-  color: rgba(45, 45, 45, 0.15);
+  color: var(--text-dim);
+  opacity: 0.25;
 }
 
 .journey-step-icon {
   width: 52px;
   height: 52px;
   border-radius: var(--radius-wobbly-circle);
-  background: #ffffff;
+  background: var(--bg-surface);
   border: 2px solid var(--fg-pencil);
   box-shadow: 2px 2px 0px 0px var(--fg-pencil);
   display: flex;
@@ -938,7 +939,7 @@
 
 /* Instructor Card Component */
 .instructor-card {
-  background: #ffffff;
+  background: var(--bg-surface);
   border: 2.5px solid var(--fg-pencil);
   border-radius: var(--radius-wobbly-md);
   box-shadow: var(--shadow-hard);
@@ -1056,7 +1057,7 @@
 }
 
 .course-details-card {
-  background: #ffffff;
+  background: var(--bg-surface);
   border: 2.5px solid var(--fg-pencil);
   border-radius: var(--radius-wobbly-md);
   box-shadow: var(--shadow-hard);
@@ -1077,7 +1078,7 @@
   border-radius: var(--radius-wobbly-sm);
   margin-bottom: 0.85rem;
   overflow: hidden;
-  background: #ffffff;
+  background: var(--bg-surface);
   box-shadow: 2px 2px 0px 0px var(--fg-pencil);
 }
 
@@ -1182,7 +1183,7 @@
   font-size: 0.88rem;
   font-weight: 600;
   padding: 0.2rem 0.6rem;
-  background: #ffffff;
+  background: var(--bg-surface);
   color: var(--color-secondary);
   border: 1.5px solid var(--fg-pencil);
   border-radius: var(--radius-wobbly-badge);
@@ -1232,7 +1233,7 @@
 
 /* Contact & Admission Forms */
 .form-card {
-  background: #ffffff;
+  background: var(--bg-surface);
   border: 3px solid var(--fg-pencil);
   border-radius: var(--radius-wobbly-md);
   box-shadow: var(--shadow-hard-lg);
@@ -1283,7 +1284,7 @@
   width: 72px;
   height: 72px;
   border-radius: var(--radius-wobbly-circle);
-  background: #ffffff;
+  background: var(--bg-surface);
   border: 2.5px solid var(--fg-pencil);
   box-shadow: 3px 3px 0px 0px var(--fg-pencil);
   color: var(--color-emerald);
@@ -1294,7 +1295,7 @@
 }
 
 .submission-preview-box {
-  background: #ffffff;
+  background: var(--bg-secondary);
   border: 2px solid var(--fg-pencil);
   border-radius: var(--radius-wobbly-sm);
   padding: 1.25rem;

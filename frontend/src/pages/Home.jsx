@@ -396,16 +396,10 @@ export default function Home() {
 
           <div className="glass-card" style={{ padding: "3rem 2rem", borderStyle: "dashed" }}>
             <div
+              className="sketch-circle"
               style={{
-                width: "56px",
-                height: "56px",
-                borderRadius: "50%",
-                background: "rgba(99, 102, 241, 0.12)",
-                color: "var(--primary-400)",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
                 margin: "0 auto 1.5rem auto",
+                color: "var(--color-secondary)",
               }}
             >
               <Compass size={28} />

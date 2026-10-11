@@ -1,10 +1,10 @@
-# SkillNova Academy — Full Project Architecture & Development Guide
+# SkillNova Academy — Full-Stack Project Architecture & Design System Guide
 
 This document provides the complete architectural roadmap for **SkillNova Academy**, covering:
 1. **Full-Stack Project Structure** (Frontend + Proposed Backend)
 2. **Backend Architecture Guide** (Endpoints, Schemas, Controllers, Proxy)
-3. **CSS Customization Guide** (Design tokens, components, themes)
-4. **Step-by-Step Setup Instructions**
+3. **Hand-Drawn Design System & CSS Guide** (Warm paper tokens, wobbly borders, hard shadows, components)
+4. **Step-by-Step Setup Instructions & Commands**
 
 ---
 
@@ -14,15 +14,15 @@ This document provides the complete architectural roadmap for **SkillNova Academ
 Hyphen-Legends/
 ├── .env.example                         # Environment variables template
 ├── .gitignore                           # Git ignore rules (node_modules, dist, .env)
-├── index.html                           # Single-page HTML entry point
+├── index.html                           # Single-page HTML entry point (Kalam & Patrick Hand fonts)
 ├── package.json                         # Frontend dependencies & scripts
-├── PROJECT_STRUCTURE.md                 # This architecture & development guide
-├── README.md                            # High-level academy overview & deployment
+├── PROJECT_STRUCTURE.md                 # This architecture & design guide
+├── README.md                            # High-level academy overview & deployment guide
 ├── vercel.json                          # Client-side routing rewrites for Vercel
 ├── vite.config.js                       # Vite dev server & API proxy config
 │
 ├── public/                              # Static public assets
-│   ├── favicon.svg
+│   ├── favicon.svg                      # Sketched graduation cap SVG icon
 │   └── _redirects                       # SPA routing redirects for Netlify
 │
 ├── src/                                 # 🎨 FRONTEND SOURCE CODE (Vite + React)
@@ -30,40 +30,40 @@ Hyphen-Legends/
 │   ├── App.jsx                          # Root routes & page layout wrapper
 │   │
 │   ├── config/
-│   │   └── site.js                      # Centralized brand, phone, email & WhatsApp
+│   │   └── site.js                      # Centralized brand, phone, email & WhatsApp config
 │   │
-│   ├── data/                            # Local mock & fallback data
+│   ├── data/                            # Local structured data & curriculum
 │   │   ├── courses.js                   # 8 courses, modules, capstones, tuition
 │   │   ├── instructors.js               # Faculty bios and sample badges
 │   │   └── faqs.js                      # Collapsible FAQ items
 │   │
 │   ├── components/                      # Reusable UI Components
-│   │   ├── Navbar.jsx                   # Sticky glassmorphic header & mobile drawer
-│   │   ├── Footer.jsx                   # Academy footer & compliance notices
-│   │   ├── Button.jsx                   # Polymorphic button (link, anchor, button)
-│   │   ├── CourseCard.jsx               # Course card with tuition & WhatsApp CTA
-│   │   ├── CourseGrid.jsx               # Responsive course grid + empty state
-│   │   ├── FAQAccordion.jsx             # Accessible accordion for questions
-│   │   ├── AdmissionForm.jsx            # Lead capture form with field validation
-│   │   ├── WhatsAppCTA.jsx              # WhatsApp inquiry integration
+│   │   ├── Navbar.jsx                   # Sticky paper header with 3px pencil border & wavy links
+│   │   ├── Footer.jsx                   # Notepad footer with dashed borders & compliance notes
+│   │   ├── Button.jsx                   # Wobbly hand-drawn button with flat-press active state
+│   │   ├── CourseCard.jsx               # Sketched card with masking tape strip & draft fee badge
+│   │   ├── CourseGrid.jsx               # Responsive course grid + empty state handling
+│   │   ├── FAQAccordion.jsx             # Lined notepad accordion for questions & syllabus
+│   │   ├── AdmissionForm.jsx            # Lead capture form with tape strip & validation
+│   │   ├── WhatsAppCTA.jsx              # Hand-drawn WhatsApp integration with fallback modal
 │   │   └── ScrollToTop.jsx              # Automatic scroll reset on route change
 │   │
 │   ├── pages/                           # Application Pages
-│   │   ├── Home.jsx                     # Hero, features, highlights, CTA
-│   │   ├── Courses.jsx                  # Catalog with search, filters & sort
-│   │   ├── CourseDetails.jsx            # Syllabus, modules, capstones, fees
-│   │   ├── About.jsx                    # Mission, pedagogy & transparency
-│   │   ├── Contact.jsx                  # Campus details & admission inquiry
-│   │   └── NotFound.jsx                 # Custom 404 page
+│   │   ├── Home.jsx                     # Hero, featured tracks, journey, faculty, FAQs, CTA
+│   │   ├── Courses.jsx                  # Catalog with live search, filters & sort
+│   │   ├── CourseDetails.jsx            # Syllabus, modules, capstones, sticky post-it sidebar
+│   │   ├── About.jsx                    # Mission, pedagogy, pillars & transparency pledge
+│   │   ├── Contact.jsx                  # Admission form, campus details, WhatsApp card
+│   │   └── NotFound.jsx                 # Custom 404 sketchbook page
 │   │
-│   └── styles/                          # 🖌️ STYLES & DESIGN SYSTEM
-│       ├── global.css                   # CSS tokens, color variables, typography
-│       └── components.css               # Navbar, Hero, CourseCard, Form styles
+│   └── styles/                          # 🖌️ HAND-DRAWN DESIGN SYSTEM (Vanilla CSS)
+│       ├── global.css                   # Paper palette, Kalam & Patrick Hand tokens, wobbly radii, hard shadows
+│       └── components.css               # Navbar, Hero, CourseCard, Form, Tape, and Post-It styles
 │
 └── server/                              # 🚀 RECOMMENDED BACKEND (Node.js + Express)
-    ├── package.json                     # Backend dependencies
+    ├── package.json                     # Backend dependencies (express, cors, dotenv, etc.)
     ├── .env                             # Environment secrets (PORT, DB_URI, SMTP, etc.)
-    ├── server.js                        # Express server entry point
+    ├── server.js                        # Express server entry point & HTTP listener
     │
     ├── config/
     │   ├── db.js                        # Database connection (MongoDB / PostgreSQL)
@@ -174,83 +174,92 @@ With this proxy, any frontend call to `fetch('/api/admissions')` is automaticall
 
 ---
 
-## 3. CSS Customization Guide
+## 3. Hand-Drawn Design System & CSS Guide
 
-The styles use **Vanilla CSS** with a design token system.
+The project implements an authentic **Hand-Drawn & Sketched Paper Design System** using native **Vanilla CSS** with zero extra library bundle overhead.
 
-### A. Global Design Tokens: `src/styles/global.css`
-Contains design variables declared inside `:root`.
+### A. Design Tokens: `src/styles/global.css`
 
-#### 1. Color Palette Customization
+#### 1. Color Palette (Single Warm Paper Palette)
 ```css
 :root {
-  /* Dark Canvas Colors */
-  --bg-primary: #0a0e17;           /* Main page background */
-  --bg-secondary: #0f172a;         /* Section alternating background */
-  --bg-surface: #141e33;           /* Cards and modal backgrounds */
-  --bg-surface-elevated: #1a2744;  /* Hovered cards / dropdowns */
+  /* Paper Canvases */
+  --bg-primary: #fdfbf7;           /* Warm Paper Canvas */
+  --bg-secondary: #f6f1e8;         /* Notepad Paper Alternate */
+  --bg-surface: #ffffff;           /* Clean Paper Card */
+  --bg-muted: #e5e0d8;             /* Old Paper / Erased Pencil */
+  --bg-postit: #fff9c4;            /* Post-it Yellow */
+  --bg-postit-tape: rgba(229, 224, 216, 0.85); /* Masking Tape */
 
-  /* Brand Accents */
-  --primary-500: #6366f1;          /* Indigo brand primary */
-  --primary-600: #4f46e5;          /* Hover state */
-  --cyan-400: #38bdf8;             /* Cyan highlight */
-  --violet-400: #c084fc;           /* Violet accent */
-  --whatsapp-green: #25d366;       /* WhatsApp button */
+  /* Pencil & Ink Foregrounds */
+  --fg-pencil: #2d2d2d;            /* Soft Pencil Black (never pure #000) */
+  --text-primary: #2d2d2d;         /* Primary Pencil Text */
+  --text-secondary: #4a4a4a;       /* Secondary Pencil Notes */
+  --text-muted: #737373;           /* Light Pencil Scribble */
 
-  /* Text Colors */
-  --text-primary: #f8fafc;         /* Headings and prominent text */
-  --text-secondary: #cbd5e1;       /* Body copy */
-  --text-muted: #94a3b8;           /* Subtitles and metadata */
+  /* Marker & Pen Accents */
+  --color-accent: #ff4d4d;          /* Red Correction Marker */
+  --color-secondary: #2d5da1;       /* Blue Ballpoint Pen */
+  --color-whatsapp: #25d366;        /* WhatsApp Marker Green */
+  --color-emerald: #15803d;         /* Green Pen */
 }
 ```
 
-#### 2. Typography Customization
+#### 2. Typography
 ```css
 :root {
-  --font-heading: 'Outfit', -apple-system, sans-serif;
-  --font-body: 'Inter', -apple-system, sans-serif;
+  --font-heading: 'Kalam', cursive, sans-serif;       /* Felt-tip marker headings (wght 700) */
+  --font-body: 'Patrick Hand', cursive, sans-serif;    /* Legible handwritten body copy (wght 400) */
 }
 ```
-*To use different fonts, update the `<link>` in `index.html` and change these two variables.*
 
-#### 3. Shadows and Glow Effects
+#### 3. Organic Wobbly Borders (No Straight Lines)
 ```css
 :root {
-  --shadow-glow: 0 0 25px -5px rgba(99, 102, 241, 0.3);
-  --shadow-glow-cyan: 0 0 25px -5px rgba(56, 189, 248, 0.25);
-  --radius-lg: 1rem;
-  --radius-xl: 1.25rem;
+  --radius-wobbly: 255px 15px 225px 15px / 15px 225px 15px 255px;
+  --radius-wobbly-md: 20px 255px 15px 225px / 225px 15px 255px 15px;
+  --radius-wobbly-sm: 10px 180px 8px 190px / 190px 10px 180px 12px;
+  --radius-wobbly-badge: 15px 225px 15px 255px / 255px 15px 225px 15px;
+  --radius-wobbly-circle: 50% 55% 45% 52% / 53% 47% 53% 48%;
+}
+```
+
+#### 4. Hard Offset Box Shadows (Zero Blur)
+```css
+:root {
+  --shadow-hard-xs: 2px 2px 0px 0px var(--fg-pencil);
+  --shadow-hard: 4px 4px 0px 0px var(--fg-pencil);
+  --shadow-hard-lg: 8px 8px 0px 0px var(--fg-pencil);
 }
 ```
 
 ---
 
-### B. Component Styling: `src/styles/components.css`
+### B. Component Styling & Visual Signatures: `src/styles/components.css`
 
-Find the relevant CSS class for each UI element:
-
-| Element | CSS Classes | Purpose |
+| Visual Element | CSS Selector | Description & Behavior |
 | :--- | :--- | :--- |
-| **Navbar** | `.navbar`, `.nav-container`, `.nav-links`, `.nav-link` | Fixed blur header, navigation layout |
-| **Mobile Drawer**| `.mobile-menu`, `.mobile-nav-link` | Slide-down mobile menu |
-| **Buttons** | `.btn`, `.btn-primary`, `.btn-secondary`, `.btn-whatsapp` | Button sizes, hover gradients, icons |
-| **Course Cards** | `.course-card`, `.course-card-header`, `.course-price-badge` | Card grid items, badge styling, lifts |
-| **Filters** | `.search-input`, `.filter-pill`, `.sort-select` | Catalog search bar, category pills |
-| **Accordions** | `.accordion-item`, `.accordion-header`, `.accordion-body` | Syllabus & FAQ collapsible panels |
-| **Admission Form**| `.admission-form`, `.form-group`, `.form-input`, `.error-message` | Inputs, dropdowns, validations |
-| **Footer** | `.footer`, `.footer-grid`, `.footer-col`, `.footer-bottom` | Columns, copyright, and honesty note |
+| **Masking Tape** | `.tape-strip` | Translucent masking tape strip pinned at the top center of cards (`rotate(-2deg)`) |
+| **Thumbtack** | `.thumbtack` | Red circular thumbtack with pencil lead border pinned at the top of cards |
+| **Post-It Cards** | `.postit-card` | Post-it yellow background `#fff9c4` with `-1.5deg` tilt and hard shadow |
+| **Buttons** | `.btn`, `.btn-primary` | Wobbly oval with 3px pencil border; hovers to marker red `#ff4d4d`; active click presses flat |
+| **Navigation** | `.site-header`, `.nav-link` | Sticky paper header with 3px pencil border; wavy red marker link underlines |
+| **Course Cards** | `.course-card` | White paper card with tape strip; alternating organic tilts (`-1deg` and `1deg`) |
+| **Filters** | `.filter-pill` | Sketched pill buttons; active selection turns into red marker pill with 2px translate |
+| **Accordions** | `.faq-card`, `.module-accordion-item` | Lined paper panels; expanded question highlights in post-it yellow |
+| **Admission Form**| `.form-card`, `.form-input` | Notepad form with tape strip; input focus switches to blue ballpoint pen ring |
 
 ---
 
 ## 4. Useful Development Commands
 
 ```bash
-# Run Frontend (Vite)
+# Start Vite Development Server (http://localhost:3000)
 npm run dev
 
-# Build Frontend for Production
+# Run Production Build Test
 npm run build
 
-# Preview Production Build
+# Preview Production Build Locally
 npm run preview
 ```

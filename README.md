@@ -1,6 +1,6 @@
 # SkillNova Academy — Premium Online IT Training Platform
 
-A modern, responsive, conversion-focused EdTech website built with **React** + **Vite**, **React Router v6**, and a **Vanilla CSS Design System**.
+A modern, responsive, conversion-focused EdTech website built with **React** + **Vite**, **React Router v6**, and an authentic **Hand-Drawn & Sketched Paper Design System** (Vanilla CSS).
 
 Designed for an IT training academy offering live online classes, practical lab assignments, real-world capstone projects, daily doubt-solving support, and technical interview preparation.
 
@@ -11,27 +11,32 @@ Designed for an IT training academy offering live online classes, practical lab 
 1. **Centralized Configuration & Course Data**:
    - Brand name, contact details, social links, and WhatsApp number managed in `src/config/site.js`.
    - All 8 comprehensive courses, proposed draft fees, modules, and learning outcomes in `src/data/courses.js`.
-2. **Interactive Catalog & Filters**:
+2. **Hand-Drawn Sketched Design System**:
+   - Authentic warm paper canvas (`#fdfbf7`) with subtle notebook paper grain.
+   - Handwritten typography with **Kalam** (marker headings) and **Patrick Hand** (body copy).
+   - Organic wobbly border-radii (`border-radius: 255px 15px 225px 15px...`) and hard offset shadows.
+   - Physical paper flourishes: masking tape strips, red thumbtacks, sticky post-it notes, and wavy link underlines.
+3. **Interactive Catalog & Filters**:
    - Real-time search by course title and description.
    - Category filtering pills (*Data & AI*, *Software Engineering*, *Business & Finance*, etc.).
    - Skill-level filtering (*Beginner*, *Intermediate*, *Advanced*).
    - Dynamic sorting by tuition fee or duration.
    - Accessible empty states with one-click filter reset.
-3. **Reusable Course Details Template**:
+4. **Reusable Course Details Template**:
    - Deep-dive pages (`/courses/:slug`) with modular curriculum accordions.
    - Real-world capstone projects with technology stack tags.
    - Transparent proposed tuition pricing and batch schedules.
    - Direct enquiry button preserving the chosen course in admissions forms.
    - Graceful 404 state for invalid slugs.
-4. **Accessible Admission & Contact Form**:
+5. **Accessible Admission & Contact Form**:
    - Full client validation (Name, Email format, 10-digit Phone, Course selection, Consent).
    - Clear error states, loading feedback, and demo mode transparency notice.
    - Direct WhatsApp forwarding button populated with candidate details.
-5. **Integrated WhatsApp Experience**:
+6. **Integrated WhatsApp Experience**:
    - Context-aware WhatsApp enquiry component prefilling specific course names.
    - Persistent floating WhatsApp contact widget on all pages.
    - Graceful fallback modal with configuration instructions if no business number is set.
-6. **Academic Transparency & Credibility**:
+7. **Academic Transparency & Credibility**:
    - Zero fabricated reviews, fake countdown timers, or artificial scarcity.
    - Clearly marked sample instructor profiles until official onboarding is complete.
    - Honest notice explaining that student case studies will be published as cohorts graduate.
@@ -41,9 +46,10 @@ Designed for an IT training academy offering live online classes, practical lab 
 ## 📂 Project Structure
 
 ```text
-├── index.html                   # HTML entry point with Google Fonts (Outfit & Inter)
+├── index.html                   # HTML entry point with Google Fonts (Kalam & Patrick Hand)
 ├── vite.config.js               # Vite configuration with React plugin
 ├── package.json                 # Project scripts and dependencies
+├── PROJECT_STRUCTURE.md         # Full-stack backend architecture & CSS design guide
 ├── .gitignore                   # Standard Git ignore rules
 └── src/
     ├── config/
@@ -53,14 +59,14 @@ Designed for an IT training academy offering live online classes, practical lab 
     │   ├── instructors.js       # Reusable instructor profiles with sample badges
     │   └── faqs.js              # General academy frequently asked questions
     ├── styles/
-    │   ├── global.css           # Design tokens, variables, typography, and utility classes
-    │   └── components.css       # Navbar, footer, card, accordion, and form styling
+    │   ├── global.css           # Paper palette, Kalam & Patrick Hand tokens, wobbly radii
+    │   └── components.css       # Sketched cards, tape strips, post-its, and forms
     ├── components/
-    │   ├── Navbar.jsx           # Sticky blur header with mobile navigation drawer
-    │   ├── Footer.jsx           # Responsive footer with course links & honesty notices
-    │   ├── CourseCard.jsx       # Course card with proposed fee & WhatsApp button
+    │   ├── Navbar.jsx           # Sticky paper header with 3px pencil border & wavy links
+    │   ├── Footer.jsx           # Notepad footer with dashed borders & honesty notices
+    │   ├── CourseCard.jsx       # Sketched card with masking tape strip & draft fee
     │   ├── CourseGrid.jsx       # Responsive grid with empty-state handling
-    │   ├── Button.jsx           # Reusable polymorphic button (link, anchor, button)
+    │   ├── Button.jsx           # Wobbly polymorphic button with flat-press click state
     │   ├── WhatsAppCTA.jsx      # Prefilled WhatsApp messaging with fallback guide
     │   ├── AdmissionForm.jsx    # Accessible form with validation & demo feedback
     │   ├── FAQAccordion.jsx     # Accessible collapsible FAQ component

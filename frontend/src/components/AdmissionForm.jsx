@@ -5,11 +5,12 @@ import {
   AlertCircle,
   MessageCircle,
   RefreshCw,
-  Info,
+  Sparkles,
   ExternalLink,
 } from "lucide-react";
 import { courses } from "../data/courses";
 import { siteConfig } from "../config/site";
+import { apiSubmitAdmission } from "../config/api";
 import Button from "./Button";
 
 export default function AdmissionForm({ defaultCourseSlug, onFormSuccess }) {
@@ -25,6 +26,7 @@ export default function AdmissionForm({ defaultCourseSlug, onFormSuccess }) {
   });
 
   const [errors, setErrors] = useState({});
+  const [serverError, setServerError] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submittedData, setSubmittedData] = useState(null);
 
@@ -69,28 +71,52 @@ export default function AdmissionForm({ defaultCourseSlug, onFormSuccess }) {
       ...prev,
       [name]: type === "checkbox" ? checked : value,
     }));
-    // Clear error for field
     if (errors[name]) {
       setErrors((prev) => ({ ...prev, [name]: undefined }));
     }
+    if (serverError) {
+      setServerError(null);
+    }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validate()) return;
 
     setIsSubmitting(true);
+    setServerError(null);
 
-    // Simulate network submission delay (demonstration flow without silent backend discard)
-    setTimeout(() => {
+    try {
+      const response = await apiSubmitAdmission({
+        fullName: formData.fullName.trim(),
+        email: formData.email.trim(),
+        phone: formData.phone.trim(),
+        courseSlug: formData.courseSlug,
+        currentStatus: formData.currentStatus,
+        preferredTiming: formData.preferredTiming,
+        message: formData.message.trim(),
+      });
+
+      setSubmittedData({
+        ...formData,
+        submittedAt: new Date().toLocaleString(),
+        admissionId: response?.data?._id || "CONFIRMED",
+      });
+
+      if (onFormSuccess) {
+        onFormSuccess(formData);
+      }
+    } catch (err) {
+      console.warn("API submission error (or network issue):", err.message);
+      setServerError(err.message || "Failed to submit admission form. Please try again or reach out on WhatsApp.");
+    } finally {
       setIsSubmitting(false);
-      setSubmittedData({ ...formData, submittedAt: new Date().toLocaleString() });
-      if (onFormSuccess) onFormSuccess(formData);
-    }, 600);
+    }
   };
 
   const resetForm = () => {
     setSubmittedData(null);
+    setServerError(null);
     setFormData({
       fullName: "",
       email: "",
@@ -106,15 +132,6 @@ export default function AdmissionForm({ defaultCourseSlug, onFormSuccess }) {
 
   const selectedCourse = courses.find((c) => c.slug === (submittedData?.courseSlug || formData.courseSlug));
 
-  // Construct direct WhatsApp forward link for convenience
-  const rawWhatsAppNumber = siteConfig.whatsapp?.number?.replace(/\D/g, "");
-  const directWhatsAppMessage = encodeURIComponent(
-    `Hello ${siteConfig.name}! My name is ${submittedData?.fullName || formData.fullName}. I submitted an enquiry for the ${
-      selectedCourse?.title || "IT Training"
-    } program. My status: ${submittedData?.currentStatus || formData.currentStatus}. Preferred timing: ${
-      submittedData?.preferredTiming || formData.preferredTiming
-    }. Phone: ${submittedData?.phone || formData.phone}. Please share upcoming batch details.`
-  );
   const whatsappUrl =
     siteConfig.whatsapp?.channelUrl ||
     siteConfig.whatsapp?.url ||
@@ -122,22 +139,23 @@ export default function AdmissionForm({ defaultCourseSlug, onFormSuccess }) {
 
   if (submittedData) {
     return (
-      <div className="form-success-card">
+      <div className="form-success-card postit-card" style={{ position: "relative" }}>
+        <div className="tape-strip" aria-hidden="true" />
         <div className="form-success-icon">
           <CheckCircle2 size={36} />
         </div>
-        <h3>Inquiry Form Validated!</h3>
+        <h3>Admission Enquiry Received!</h3>
         <p className="mt-2 text-muted">
-          Thank you, <strong>{submittedData.fullName}</strong>. Your enquiry details have been verified on the frontend.
+          Thank you, <strong>{submittedData.fullName}</strong>. Your application has been recorded in our admissions system.
         </p>
 
-        {/* Clear transparent demo notice */}
-        <div className="demo-mode-banner mt-4 text-left">
-          <Info size={20} />
+        {/* Database confirmation badge */}
+        <div className="demo-mode-banner mt-3 text-left" style={{ background: "#e8f5e9", borderColor: "#2e7d32" }}>
+          <Sparkles size={20} color="#2e7d32" />
           <div>
-            <strong>Frontend Demonstration Notice:</strong>
-            <p className="mt-1">
-              This repository currently operates in frontend-only mode (no private database or SMTP mail server is attached). To make this production-ready, connect this form handler to services like Formspree, EmailJS, or your backend REST API.
+            <strong style={{ color: "#2e7d32" }}>Confirmed &amp; Dispatched:</strong>
+            <p className="mt-1" style={{ color: "#1b5e20", margin: 0 }}>
+              Your inquiry has been stored securely in MongoDB Atlas. Our admissions coordinator will contact you via WhatsApp / Email with batch slots and syllabus.
             </p>
           </div>
         </div>
@@ -147,7 +165,7 @@ export default function AdmissionForm({ defaultCourseSlug, onFormSuccess }) {
           <p><strong>Candidate:</strong> {submittedData.fullName}</p>
           <p><strong>Email:</strong> {submittedData.email}</p>
           <p><strong>Phone:</strong> {submittedData.phone}</p>
-          <p><strong>Selected Course:</strong> {selectedCourse?.title} ({selectedCourse?.feeDisplay})</p>
+          <p><strong>Selected Course:</strong> {selectedCourse?.title || submittedData.courseSlug} {selectedCourse?.feeDisplay ? `(${selectedCourse.feeDisplay})` : ""}</p>
           <p><strong>Status:</strong> {submittedData.currentStatus}</p>
           <p><strong>Preferred Timing:</strong> {submittedData.preferredTiming}</p>
           {submittedData.message && <p><strong>Message:</strong> {submittedData.message}</p>}
@@ -178,16 +196,16 @@ export default function AdmissionForm({ defaultCourseSlug, onFormSuccess }) {
   return (
     <form className="form-card" onSubmit={handleSubmit} noValidate>
       <div className="tape-strip" aria-hidden="true" />
-      {/* Honest Demo Mode Banner */}
-      <div className="demo-mode-banner">
-        <Info size={20} />
-        <div>
-          <strong>Admissions Demo Workflow:</strong>
-          <p className="mt-0.5">
-            Feel free to test full validation. Since no backend database is connected yet, your submission is verified in frontend state with direct WhatsApp forwarding.
-          </p>
+      
+      {serverError && (
+        <div className="demo-mode-banner mb-4" style={{ borderColor: "var(--color-marker-red)", background: "#fff5f5" }}>
+          <AlertCircle size={20} color="var(--color-marker-red)" />
+          <div>
+            <strong style={{ color: "var(--color-marker-red)" }}>Submission Notice:</strong>
+            <p className="mt-0.5" style={{ color: "var(--fg-pencil)" }}>{serverError}</p>
+          </div>
         </div>
-      </div>
+      )}
 
       <div className="grid-2">
         {/* Full Name */}

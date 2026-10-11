@@ -1,183 +1,236 @@
-# SkillNova Academy — Premium Online IT Training Platform
+# SkillNova Academy — Full-Stack Monorepo
 
-A modern, responsive, conversion-focused EdTech website built with **React** + **Vite**, **React Router v6**, and an authentic **Hand-Drawn & Sketched Paper Design System** (Vanilla CSS).
-
-Designed for an IT training academy offering live online classes, practical lab assignments, real-world capstone projects, daily doubt-solving support, and technical interview preparation.
-
----
-
-## 🌟 Key Features
-
-1. **Centralized Configuration & Course Data**:
-   - Brand name, contact details, social links, and WhatsApp number managed in `src/config/site.js`.
-   - All 8 comprehensive courses, proposed draft fees, modules, and learning outcomes in `src/data/courses.js`.
-2. **Hand-Drawn Sketched Design System**:
-   - Authentic warm paper canvas (`#fdfbf7`) with subtle notebook paper grain.
-   - Handwritten typography with **Kalam** (marker headings) and **Patrick Hand** (body copy).
-   - Organic wobbly border-radii (`border-radius: 255px 15px 225px 15px...`) and hard offset shadows.
-   - Physical paper flourishes: masking tape strips, red thumbtacks, sticky post-it notes, and wavy link underlines.
-3. **Interactive Catalog & Filters**:
-   - Real-time search by course title and description.
-   - Category filtering pills (*Data & AI*, *Software Engineering*, *Business & Finance*, etc.).
-   - Skill-level filtering (*Beginner*, *Intermediate*, *Advanced*).
-   - Dynamic sorting by tuition fee or duration.
-   - Accessible empty states with one-click filter reset.
-4. **Reusable Course Details Template**:
-   - Deep-dive pages (`/courses/:slug`) with modular curriculum accordions.
-   - Real-world capstone projects with technology stack tags.
-   - Transparent proposed tuition pricing and batch schedules.
-   - Direct enquiry button preserving the chosen course in admissions forms.
-   - Graceful 404 state for invalid slugs.
-5. **Accessible Admission & Contact Form**:
-   - Full client validation (Name, Email format, 10-digit Phone, Course selection, Consent).
-   - Clear error states, loading feedback, and demo mode transparency notice.
-   - Direct WhatsApp forwarding button populated with candidate details.
-6. **Integrated WhatsApp Experience**:
-   - Context-aware WhatsApp enquiry component prefilling specific course names.
-   - Persistent floating WhatsApp contact widget on all pages.
-   - Graceful fallback modal with configuration instructions if no business number is set.
-7. **Academic Transparency & Credibility**:
-   - Zero fabricated reviews, fake countdown timers, or artificial scarcity.
-   - Clearly marked sample instructor profiles until official onboarding is complete.
-   - Honest notice explaining that student case studies will be published as cohorts graduate.
+A production-ready full-stack EdTech academy platform built with a decoupled architecture:
+- **Frontend**: React + Vite SPA styled with a custom **Hand-Drawn Sketched Paper Design System** (Vanilla CSS, Kalam & Patrick Hand typography, organic wobbly radii, hard offset drop-shadows).
+- **Backend**: Express 4 REST API with Mongoose, MongoDB Atlas, Nodemailer notification pipeline, and graceful fallback handling.
+- **Deployments**: Independent zero-touch deployment setup — **Vercel** for Frontend, **Render** for Backend.
 
 ---
 
-## 📂 Project Structure
+## 📂 Repository Layout
 
 ```text
-├── index.html                   # HTML entry point with Google Fonts (Kalam & Patrick Hand)
-├── vite.config.js               # Vite configuration with React plugin
-├── package.json                 # Project scripts and dependencies
-├── PROJECT_STRUCTURE.md         # Full-stack backend architecture & CSS design guide
-├── .gitignore                   # Standard Git ignore rules
-└── src/
-    ├── config/
-    │   └── site.js              # Centralized brand, contact, WhatsApp, and social links
-    ├── data/
-    │   ├── courses.js           # 8 courses, draft fees, durations, modules, and capstones
-    │   ├── instructors.js       # Reusable instructor profiles with sample badges
-    │   └── faqs.js              # General academy frequently asked questions
-    ├── styles/
-    │   ├── global.css           # Paper palette, Kalam & Patrick Hand tokens, wobbly radii
-    │   └── components.css       # Sketched cards, tape strips, post-its, and forms
-    ├── components/
-    │   ├── Navbar.jsx           # Sticky paper header with 3px pencil border & wavy links
-    │   ├── Footer.jsx           # Notepad footer with dashed borders & honesty notices
-    │   ├── CourseCard.jsx       # Sketched card with masking tape strip & draft fee
-    │   ├── CourseGrid.jsx       # Responsive grid with empty-state handling
-    │   ├── Button.jsx           # Wobbly polymorphic button with flat-press click state
-    │   ├── WhatsAppCTA.jsx      # Prefilled WhatsApp messaging with fallback guide
-    │   ├── AdmissionForm.jsx    # Accessible form with validation & demo feedback
-    │   ├── FAQAccordion.jsx     # Accessible collapsible FAQ component
-    │   └── ScrollToTop.jsx      # Automatic window scroll reset on route change
-    ├── pages/
-    │   ├── Home.jsx             # Hero, Featured Courses, Pillars, Journey, Faculty, FAQs
-    │   ├── Courses.jsx          # Searchable & filterable course catalog
-    │   ├── CourseDetails.jsx    # Curriculum, capstones, pricing sidebar, enquiry CTA
-    │   ├── About.jsx            # Mission, pedagogy, pillars, and honesty pledge
-    │   ├── Contact.jsx          # Admission form, academy office details, and WhatsApp
-    │   └── NotFound.jsx         # Custom 404 page with quick navigation
-    ├── App.jsx                  # Main routing and layout wrapper
-    └── main.jsx                 # App bootstrap with React Router
+skillnova-academy/
+├── frontend/                  # Vite + React app (Vercel deployment)
+│   ├── src/
+│   │   ├── main.jsx, App.jsx
+│   │   ├── config/ (site.js, api.js)
+│   │   ├── data/ (courses.js, instructors.js, faqs.js)
+│   │   ├── components/ (Navbar, Footer, Button, CourseCard, CourseGrid, FAQAccordion, AdmissionForm, WhatsAppCTA, ScrollToTop)
+│   │   ├── pages/ (Home, Courses, CourseDetails, About, Contact, NotFound)
+│   │   └── styles/ (global.css, components.css)
+│   ├── index.html, package.json, vite.config.js, vercel.json, public/
+│   ├── .env.example
+├── backend/                   # Express 4 + MongoDB Atlas REST API (Render deployment)
+│   ├── package.json, server.js, render.yaml
+│   ├── config/ (db.js, mailer.js)
+│   ├── models/ (Admission.js, Course.js, ContactMessage.js)
+│   ├── controllers/ (admissionController.js, courseController.js, contactController.js)
+│   ├── routes/ (admissionRoutes.js, courseRoutes.js, contactRoutes.js)
+│   ├── middleware/ (errorHandler.js, validate.js)
+│   ├── seed/ (seedCourses.js)
+│   └── .env.example
+├── .gitignore                 # Monorepo-level gitignore (protects envs & builds)
+└── README.md                  # Comprehensive setup & deployment guide
 ```
 
 ---
 
-## 🚀 Running Locally
+## 🛠️ Step-by-Step Setup & Deployment Guide
 
-### 1. Prerequisites
-Ensure you have **Node.js 18+** installed. Check via:
-```bash
-node -v
-npm -v
-```
+Follow these exact numbered steps to set up the database, run both services locally, and deploy to production.
 
-### 2. Install Dependencies
+### Step 1: MongoDB Atlas Setup
+1. Log in to [MongoDB Atlas](https://www.mongodb.com/cloud/atlas).
+2. Create a free shared cluster (e.g. M0 tier).
+3. Under **Security → Database Access**, create a database user:
+   - Example username: `i7am8sid6_db_user`
+   - Example password: `<strong-password>`
+   - Role: Read and write to any database.
+4. Under **Security → Network Access**, add an IP Access List entry:
+   - For cloud platforms (Render) and local dev: click **Allow Access from Anywhere** (`0.0.0.0/0`).
+5. Under **Deployment → Database**, click **Connect → Drivers → Node.js** to copy your connection string:
+   ```env
+   MONGODB_URI=mongodb+srv://<username>:<password>@<cluster>.mongodb.net/skillnova?retryWrites=true&w=majority
+   ```
+
+---
+
+### Step 2: Backend Local Setup
+Navigate to `backend/` and install dependencies:
 ```bash
+cd backend
 npm install
 ```
 
-### 3. Start Development Server
+Create your local `.env` file from the example:
+```bash
+cp .env.example .env
+```
+
+Edit `backend/.env` with your MongoDB connection string and settings:
+```env
+PORT=5000
+NODE_ENV=development
+MONGODB_URI=mongodb+srv://<username>:<password>@<cluster>.mongodb.net/skillnova?retryWrites=true&w=majority
+ALLOWED_ORIGINS=http://localhost:3000,http://localhost:5173
+NOTIFY_EMAIL=admissions@skillnova.edu
+```
+*(SMTP variables can remain blank in development; emails will gracefully fall back to formatted console output without crashing.)*
+
+Seed the 8 academy courses into MongoDB Atlas:
+```bash
+npm run seed
+```
+
+Start the backend development server:
 ```bash
 npm run dev
 ```
-The site will run at `http://localhost:3000/`.
-
-### 4. Create Production Build
-```bash
-npm run build
-```
-Build output is generated into the `dist/` directory.
-
-### 5. Preview Production Build
-```bash
-npm run preview
-```
+Backend will start on `http://localhost:5000` with the health check live at `http://localhost:5000/api/health`.
 
 ---
 
-## 🚢 Deploying to Vercel or Netlify
+### Step 3: Frontend Local Setup
+Open a new terminal window, navigate to `frontend/`, and install dependencies:
+```bash
+cd frontend
+npm install
+```
 
-### Deploying to Vercel
-1. Push this repository to GitHub.
-2. Sign in to [Vercel](https://vercel.com) and click **"Add New Project"**.
-3. Select your GitHub repository (`Hyphen-Legends`).
-4. Vercel automatically detects **Vite**:
+Create your local `.env` file:
+```bash
+cp .env.example .env
+```
+Ensure `frontend/.env` contains:
+```env
+VITE_API_URL=http://localhost:5000
+```
+
+Start the frontend development server:
+```bash
+npm run dev
+```
+Open [http://localhost:3000](http://localhost:3000) in your browser. All API requests route to `http://localhost:5000` with automatic fallback to local dataset if the backend is paused.
+
+---
+
+### Step 4: Deploy Backend to Render
+1. Push your repository to GitHub.
+2. Go to the [Render Dashboard](https://dashboard.render.com/) and click **New + → Web Service**.
+3. Connect your GitHub repository.
+4. Fill in the service configuration:
+   - **Name**: `skillnova-backend`
+   - **Root Directory**: `backend`
+   - **Environment**: `Node`
+   - **Build Command**: `npm install`
+   - **Start Command**: `npm start`
+5. Under **Environment Variables**, add:
+   - `NODE_ENV`: `production`
+   - `PORT`: `10000`
+   - `MONGODB_URI`: `<your-mongodb-atlas-connection-string>`
+   - `ALLOWED_ORIGINS`: `http://localhost:3000,http://localhost:5173` *(you will add your Vercel URL in Step 6)*
+   - `NOTIFY_EMAIL`: `admissions@skillnova.edu`
+   - *(Optional)* `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS` if you want live transactional emails.
+6. Click **Create Web Service**. Once deployed, copy your service URL (e.g. `https://skillnova-backend.onrender.com`).
+
+---
+
+### Step 5: Deploy Frontend to Vercel
+1. Go to the [Vercel Dashboard](https://vercel.com/) and click **Add New... → Project**.
+2. Import your GitHub repository.
+3. Configure the project:
+   - **Root Directory**: Click *Edit* and select `frontend`.
+   - **Framework Preset**: `Vite` (automatically detected).
    - **Build Command**: `npm run build`
    - **Output Directory**: `dist`
-   - **Install Command**: `npm install`
-5. Click **Deploy**.
+4. Under **Environment Variables**, add:
+   - `VITE_API_URL`: `https://skillnova-backend.onrender.com` *(your Render backend URL from Step 4)*
+5. Click **Deploy**. Vercel will build the frontend with `vercel.json` SPA routing support.
 
-*Note for client-side routing on Vercel:* If you encounter 404s when refreshing subpaths like `/courses/data-analytics`, create a `vercel.json` file in the root directory:
+---
+
+### Step 6: Cross-Origin Handshake & Final Sync
+1. Copy your newly generated Vercel production URL (e.g. `https://skillnova-academy.vercel.app`).
+2. Return to your Render backend dashboard:
+   - Go to **Environment** tab.
+   - Update `ALLOWED_ORIGINS` to include your Vercel URL:
+     ```text
+     http://localhost:3000,http://localhost:5173,https://skillnova-academy.vercel.app
+     ```
+3. Save changes. Render will automatically reload the environment with CORS permissions enabled for your Vercel deployment.
+
+---
+
+## 🧪 Local API Verification Checklist
+
+Run these `curl` commands in your terminal to verify all 5 endpoints:
+
+### 1. Health Check (`GET /api/health`)
+```bash
+curl -X GET http://localhost:5000/api/health
+```
+**Expected Response:**
 ```json
-{
-  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
-}
+{"status":"ok","db":"connected"}
 ```
 
-### Deploying to Netlify
-1. Sign in to [Netlify](https://netlify.com) and click **"Add new site" > "Import an existing project"**.
-2. Connect your GitHub repository.
-3. Configure build settings:
-   - **Build command**: `npm run build`
-   - **Publish directory**: `dist`
-4. Click **Deploy Site**.
+### 2. List Courses with Filtering (`GET /api/courses`)
+```bash
+curl -X GET "http://localhost:5000/api/courses?category=Data%20%26%20AI&level=beginner"
+```
+**Expected Response:**
+```json
+{"success":true,"count":1,"data":[{"slug":"data-analytics","title":"Data Analytics & Visualization",...}]}
+```
 
-*Note for client-side routing on Netlify:* Create a `public/_redirects` file with the following line:
-```text
-/*    /index.html   200
+### 3. Get Course Details by Slug (`GET /api/courses/:slug`)
+```bash
+curl -X GET http://localhost:5000/api/courses/data-analytics
+```
+**Expected Response:**
+```json
+{"success":true,"data":{"slug":"data-analytics","title":"Data Analytics & Visualization","modules":[...],"capstone":{...}}}
+```
+
+### 4. Submit Admission Lead (`POST /api/admissions`)
+```bash
+curl -X POST http://localhost:5000/api/admissions \
+  -H "Content-Type: application/json" \
+  -d '{
+    "fullName": "Rahul Sharma",
+    "email": "rahul@example.com",
+    "phone": "9876543210",
+    "courseSlug": "data-analytics",
+    "currentStatus": "student",
+    "preferredTiming": "evening",
+    "message": "Interested in upcoming weekend batch and fee structure."
+  }'
+```
+**Expected Response (HTTP 201):**
+```json
+{"success":true,"message":"Admission inquiry submitted successfully.","data":{"_id":"...","status":"new"}}
+```
+
+### 5. Submit General Contact Message (`POST /api/contact`)
+```bash
+curl -X POST http://localhost:5000/api/contact \
+  -H "Content-Type: application/json" \
+  -d '{
+    "fullName": "Priya Iyer",
+    "email": "priya@example.com",
+    "phone": "9876543211",
+    "message": "Requesting corporate discount details for batch enrollment."
+  }'
+```
+**Expected Response (HTTP 201):**
+```json
+{"success":true,"message":"Contact message sent successfully.","data":{"_id":"..."}}
 ```
 
 ---
 
-## ⚙️ Configuration Checklist (Next Steps)
-
-To customize the website for your real production launch, update these files:
-
-1. **WhatsApp Business Number**:
-   - Open `src/config/site.js`
-   - Set `siteConfig.whatsapp.number` to your international mobile number without spaces or symbols (e.g. `"919876543210"` for India).
-   - Set `siteConfig.whatsapp.isConfigured: true`.
-
-2. **Official Contact Information**:
-   - Open `src/config/site.js`
-   - Update `email`, `supportEmail`, `phone`, and campus address.
-
-3. **Social Media Links**:
-   - Open `src/config/site.js`
-   - Update `socialLinks` with your academy's handles (LinkedIn, GitHub, X/Twitter, YouTube, Instagram).
-
-4. **Connecting a Live Form Backend**:
-   - Open `src/components/AdmissionForm.jsx`.
-   - In `handleSubmit`, replace the mock timeout with your preferred endpoint or webhook (e.g., [Formspree](https://formspree.io), [EmailJS](https://www.emailjs.com), or your private REST API):
-     ```javascript
-     const response = await fetch("https://formspree.io/f/YOUR_FORM_ID", {
-       method: "POST",
-       headers: { "Content-Type": "application/json" },
-       body: JSON.stringify(formData),
-     });
-     ```
-
-5. **Course Tuition & Syllabus Customization**:
-   - Open `src/data/courses.js` to modify course titles, draft fees, duration, module outlines, or prerequisites.
+## 🎨 Design System Integrity
+- **Hand-Drawn Sketched Aesthetic**: Kalam & Patrick Hand fonts, warm paper `#fdfbf7`, soft pencil `#2d2d2d`, ballpoint blue `#2d5da1`, highlighter red `#ff4d4d`.
+- **Pure Vanilla CSS**: Zero Tailwind, zero external UI component kits.
+- **WhatsApp Integration**: Official Academy Channel [https://whatsapp.com/channel/0029VbDpAjNFMqrYPjEV2916](https://whatsapp.com/channel/0029VbDpAjNFMqrYPjEV2916).

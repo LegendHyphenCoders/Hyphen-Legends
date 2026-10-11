@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import {
   Clock,
@@ -17,20 +17,61 @@ import {
   FileText,
   ChevronDown,
 } from "lucide-react";
-import { courses } from "../data/courses";
+import { courses as localCourses } from "../data/courses";
+import { apiGetCourseBySlug } from "../config/api";
 import Button from "../components/Button";
 import WhatsAppCTA from "../components/WhatsAppCTA";
 import FAQAccordion from "../components/FAQAccordion";
 
 export default function CourseDetails() {
   const { slug } = useParams();
-  const course = courses.find((c) => c.slug === slug);
+  const localMatch = localCourses.find((c) => c.slug === slug);
+  const [course, setCourse] = useState(localMatch || null);
+  const [isLoading, setIsLoading] = useState(!localMatch);
+
+  // Fetch course from backend API with fallback
+  useEffect(() => {
+    let isMounted = true;
+    async function loadCourse() {
+      try {
+        const result = await apiGetCourseBySlug(slug);
+        if (isMounted && result && result.data) {
+          const apiData = result.data;
+          setCourse({
+            ...localMatch,
+            ...apiData,
+            skillLevel:
+              apiData.skillLevel ||
+              (apiData.level
+                ? apiData.level.charAt(0).toUpperCase() + apiData.level.slice(1)
+                : localMatch?.skillLevel),
+            proposedFee: apiData.proposedFee || apiData.tuition || localMatch?.proposedFee,
+            feeDisplay:
+              localMatch?.feeDisplay ||
+              `₹${(apiData.tuition || apiData.proposedFee || 0).toLocaleString("en-IN")}`,
+          });
+        }
+      } catch (err) {
+        console.warn("API unreachable for course slug; using local fallback:", err.message);
+        if (isMounted && localMatch) {
+          setCourse(localMatch);
+        }
+      } finally {
+        if (isMounted) setIsLoading(false);
+      }
+    }
+
+    loadCourse();
+    return () => {
+      isMounted = false;
+    };
+  }, [slug]);
 
   // Module accordion state (first module open by default)
   const [openModuleIndex, setOpenModuleIndex] = useState(0);
 
-  // If slug is invalid, show friendly not-found state
-  if (!course) {
+  // If slug is invalid and not loading, show friendly not-found state
+  if (!isLoading && !course) {
     return (
       <div className="section" style={{ paddingTop: "5rem", paddingBottom: "5rem" }}>
         <div className="container container-narrow" style={{ textAlign: "center" }}>

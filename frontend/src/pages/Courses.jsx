@@ -1,7 +1,8 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { useSearchParams } from "react-router-dom";
 import { Search, Filter, BookOpen, RotateCcw, Sparkles } from "lucide-react";
-import { courses, courseCategories, skillLevels } from "../data/courses";
+import { courses as localCourses, courseCategories, skillLevels } from "../data/courses";
+import { apiGetCourses } from "../config/api";
 import CourseGrid from "../components/CourseGrid";
 import Button from "../components/Button";
 
@@ -15,18 +16,63 @@ export default function Courses() {
   const [selectedCategory, setSelectedCategory] = useState(initialCategory);
   const [selectedLevel, setSelectedLevel] = useState("All Levels");
   const [sortBy, setSortBy] = useState("default");
+  const [apiCourses, setApiCourses] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+
+  // Fetch from backend API with automatic fallback to static courses
+  useEffect(() => {
+    let isMounted = true;
+    async function loadCourses() {
+      setIsLoading(true);
+      try {
+        const result = await apiGetCourses({
+          category: selectedCategory,
+          level: selectedLevel,
+          search: searchQuery,
+        });
+        if (isMounted && result && Array.isArray(result.data)) {
+          // Normalize API fields with fallback defaults
+          const normalized = result.data.map((c) => {
+            const localMatch = localCourses.find((lc) => lc.slug === c.slug) || {};
+            return {
+              ...localMatch,
+              ...c,
+              skillLevel: c.skillLevel || (c.level ? c.level.charAt(0).toUpperCase() + c.level.slice(1) : localMatch.skillLevel),
+              proposedFee: c.proposedFee || c.tuition || localMatch.proposedFee,
+              feeDisplay: localMatch.feeDisplay || `₹${(c.tuition || c.proposedFee || 0).toLocaleString("en-IN")}`,
+            };
+          });
+          setApiCourses(normalized);
+        }
+      } catch (err) {
+        // Graceful fallback to local dataset so UI never appears broken
+        console.warn("Backend API not reachable; falling back to local courses dataset:", err.message);
+        if (isMounted) setApiCourses(null);
+      } finally {
+        if (isMounted) setIsLoading(false);
+      }
+    }
+
+    loadCourses();
+    return () => {
+      isMounted = false;
+    };
+  }, [selectedCategory, selectedLevel, searchQuery]);
+
+  // Source of truth: API courses if loaded, otherwise fallback to local courses
+  const baseCourses = apiCourses || localCourses;
 
   // Filtered and sorted courses
   const filteredCourses = useMemo(() => {
-    return courses
+    return baseCourses
       .filter((course) => {
         // Search filter (title or description or tech)
         const query = searchQuery.trim().toLowerCase();
         const matchesQuery =
           !query ||
-          course.title.toLowerCase().includes(query) ||
-          course.shortDescription.toLowerCase().includes(query) ||
-          course.category.toLowerCase().includes(query);
+          course.title?.toLowerCase().includes(query) ||
+          course.shortDescription?.toLowerCase().includes(query) ||
+          course.category?.toLowerCase().includes(query);
 
         // Category filter
         const matchesCategory =
@@ -34,20 +80,23 @@ export default function Courses() {
           course.category === selectedCategory;
 
         // Skill level filter
+        const levelVal = course.skillLevel || course.level || "";
         const matchesLevel =
           selectedLevel === "All Levels" ||
-          course.skillLevel.toLowerCase().includes(selectedLevel.toLowerCase());
+          levelVal.toLowerCase().includes(selectedLevel.toLowerCase());
 
         return matchesQuery && matchesCategory && matchesLevel;
       })
       .sort((a, b) => {
-        if (sortBy === "fee-asc") return a.proposedFee - b.proposedFee;
-        if (sortBy === "fee-desc") return b.proposedFee - a.proposedFee;
-        if (sortBy === "duration-asc") return parseInt(a.duration) - parseInt(b.duration);
-        if (sortBy === "duration-desc") return parseInt(b.duration) - parseInt(a.duration);
+        const feeA = a.proposedFee || a.tuition || 0;
+        const feeB = b.proposedFee || b.tuition || 0;
+        if (sortBy === "fee-asc") return feeA - feeB;
+        if (sortBy === "fee-desc") return feeB - feeA;
+        if (sortBy === "duration-asc") return parseInt(a.duration || "0") - parseInt(b.duration || "0");
+        if (sortBy === "duration-desc") return parseInt(b.duration || "0") - parseInt(a.duration || "0");
         return 0;
       });
-  }, [searchQuery, selectedCategory, selectedLevel, sortBy]);
+  }, [baseCourses, searchQuery, selectedCategory, selectedLevel, sortBy]);
 
   const handleCategorySelect = (cat) => {
     setSelectedCategory(cat);

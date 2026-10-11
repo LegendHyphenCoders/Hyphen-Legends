@@ -12,13 +12,14 @@ export const siteConfig = {
   url: "https://skillnova-academy.example.com",
   
   // WhatsApp Configuration
-  // Put your 10-12 digit country-coded number without '+' or '-' (e.g. "919876543210")
-  // If left empty (""), the WhatsApp button falls back gracefully with a clear setup note.
+  // Official SkillNova Academy WhatsApp Channel
   whatsapp: {
+    channelUrl: "https://whatsapp.com/channel/0029VbDpAjNFMqrYPjEV2916",
+    url: "https://whatsapp.com/channel/0029VbDpAjNFMqrYPjEV2916",
     number: "919876543210", 
     defaultMessage:
       "Hello SkillNova Academy! I would like to learn more about your live online IT training courses and upcoming batch schedules.",
-    isConfigured: true, // Set to false if you haven't assigned a business number yet
+    isConfigured: true,
   },
 
   // Contact Information
@@ -41,6 +42,7 @@ export const siteConfig = {
 
   // Social Links
   socialLinks: {
+    whatsapp: "https://whatsapp.com/channel/0029VbDpAjNFMqrYPjEV2916",
     github: "https://github.com",
     linkedin: "https://linkedin.com",
     twitter: "https://x.com",

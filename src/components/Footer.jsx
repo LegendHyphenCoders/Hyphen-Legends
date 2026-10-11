@@ -8,6 +8,7 @@ import {
   Clock,
   ShieldCheck,
   ArrowRight,
+  MessageCircle,
 } from "lucide-react";
 import { siteConfig } from "../config/site";
 import { courses } from "../data/courses";
@@ -126,6 +127,16 @@ export default function Footer() {
                 aria-label="Instagram"
               >
                 <InstagramIcon size={18} />
+              </a>
+              <a
+                href={siteConfig.socialLinks.whatsapp}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="footer-social-link"
+                aria-label="WhatsApp Channel"
+                title="Join WhatsApp Channel"
+              >
+                <MessageCircle size={18} />
               </a>
             </div>
           </div>

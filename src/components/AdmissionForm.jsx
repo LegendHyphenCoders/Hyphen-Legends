@@ -115,7 +115,10 @@ export default function AdmissionForm({ defaultCourseSlug, onFormSuccess }) {
       submittedData?.preferredTiming || formData.preferredTiming
     }. Phone: ${submittedData?.phone || formData.phone}. Please share upcoming batch details.`
   );
-  const whatsappUrl = `https://wa.me/${rawWhatsAppNumber}?text=${directWhatsAppMessage}`;
+  const whatsappUrl =
+    siteConfig.whatsapp?.channelUrl ||
+    siteConfig.whatsapp?.url ||
+    "https://whatsapp.com/channel/0029VbDpAjNFMqrYPjEV2916";
 
   if (submittedData) {
     return (
@@ -159,7 +162,7 @@ export default function AdmissionForm({ defaultCourseSlug, onFormSuccess }) {
             className="btn btn-whatsapp"
           >
             <MessageCircle size={18} />
-            <span>Forward to WhatsApp Directly</span>
+            <span>Join Our WhatsApp Channel</span>
             <ExternalLink size={14} />
           </a>
 

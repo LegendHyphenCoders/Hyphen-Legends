@@ -16,9 +16,9 @@ hl-stack/
 │   │   ├── main.jsx, App.jsx
 │   │   ├── config/ (site.js, api.js)
 │   │   ├── data/ (courses.js, instructors.js, faqs.js)
-│   │   ├── components/ (Navbar, Footer, Button, CourseCard, CourseGrid, FAQAccordion, AdmissionForm, WhatsAppCTA, ScrollToTop)
+│   │   ├── components/ (SplashScreen, Navbar, Footer, Button, CourseCard, CourseGrid, FAQAccordion, AdmissionForm, WhatsAppCTA, ScrollToTop)
 │   │   ├── pages/ (Home, Courses, CourseDetails, About, Contact, NotFound)
-│   │   └── styles/ (global.css, components.css)
+│   │   └── styles/ (global.css, themes.css, components.css, splash.css)
 │   ├── index.html, package.json, vite.config.js, vercel.json, public/
 │   ├── .env.example
 ├── backend/                   # Express 4 + MongoDB Atlas REST API (Render deployment)
@@ -31,6 +31,7 @@ hl-stack/
 │   ├── seed/ (seedCourses.js)
 │   └── .env.example
 ├── .gitignore                 # Monorepo-level gitignore (protects envs & builds)
+├── PROJECT_STRUCTURE.md       # Architectural roadmap & design system guide
 └── README.md                  # Comprehensive setup & deployment guide
 ```
 

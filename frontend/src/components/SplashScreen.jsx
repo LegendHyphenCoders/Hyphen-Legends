@@ -1,25 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
 
 export default function SplashScreen() {
-  const [shouldRender, setShouldRender] = useState(() => {
-    try {
-      return !sessionStorage.getItem("hl-splash-shown");
-    } catch {
-      return false;
-    }
-  });
+  const [shouldRender, setShouldRender] = useState(true);
   const [isExiting, setIsExiting] = useState(false);
   const [isReady, setIsReady] = useState(false);
   const splashRef = useRef(null);
 
   useEffect(() => {
     if (!shouldRender) return;
-
-    try {
-      sessionStorage.setItem("hl-splash-shown", "true");
-    } catch {
-      // Ignore private browsing storage errors
-    }
 
     const prefersReducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)"

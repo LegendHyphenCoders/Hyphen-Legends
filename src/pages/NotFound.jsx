@@ -16,21 +16,33 @@ export default function NotFound() {
       }}
     >
       <div className="container container-narrow">
-        <div className="glass-card" style={{ padding: "4rem 2rem", maxWidth: "600px", margin: "0 auto" }}>
+        <div
+          className="glass-card postit-card"
+          style={{
+            padding: "4rem 2rem",
+            maxWidth: "600px",
+            margin: "0 auto",
+            position: "relative",
+            transform: "rotate(-1.5deg)",
+          }}
+        >
+          <div className="tape-strip" aria-hidden="true" />
           <div
             style={{
-              width: "72px",
-              height: "72px",
-              borderRadius: "50%",
-              background: "rgba(99, 102, 241, 0.15)",
-              color: "var(--primary-400)",
+              width: "76px",
+              height: "76px",
+              borderRadius: "var(--radius-wobbly-circle)",
+              background: "#ffffff",
+              border: "2.5px solid var(--fg-pencil)",
+              color: "var(--color-accent)",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
               margin: "0 auto 1.5rem auto",
+              boxShadow: "2px 2px 0px 0px var(--fg-pencil)",
             }}
           >
-            <Compass size={36} />
+            <Compass size={38} />
           </div>
 
           <span className="section-tag" style={{ marginBottom: "1rem" }}>

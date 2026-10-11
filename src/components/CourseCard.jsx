@@ -28,6 +28,7 @@ export default function CourseCard({ course }) {
 
   return (
     <article className="course-card">
+      <div className="tape-strip" aria-hidden="true" />
       <div className="course-card-header">
         <div className="course-card-topbar">
           <span className={`badge ${getCategoryBadgeClass(course.category)}`}>

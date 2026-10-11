@@ -174,6 +174,7 @@ export default function AdmissionForm({ defaultCourseSlug, onFormSuccess }) {
 
   return (
     <form className="form-card" onSubmit={handleSubmit} noValidate>
+      <div className="tape-strip" aria-hidden="true" />
       {/* Honest Demo Mode Banner */}
       <div className="demo-mode-banner">
         <Info size={20} />

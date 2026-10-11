@@ -52,13 +52,13 @@ export default function Contact() {
           <div style={{ display: "flex", flexDirection: "column", gap: "1.75rem" }}>
             {/* Quick WhatsApp Card */}
             <div
-              className="glass-card"
+              className="glass-card postit-card"
               style={{
                 padding: "2rem",
-                border: "1px solid rgba(37, 211, 102, 0.3)",
-                background: "rgba(15, 23, 42, 0.75)",
+                position: "relative",
               }}
             >
+              <div className="tape-strip" aria-hidden="true" />
               <div
                 style={{
                   display: "flex",
@@ -69,23 +69,25 @@ export default function Contact() {
               >
                 <div
                   style={{
-                    width: "44px",
-                    height: "44px",
-                    borderRadius: "10px",
-                    background: "rgba(37, 211, 102, 0.15)",
-                    color: "#25d366",
+                    width: "48px",
+                    height: "48px",
+                    borderRadius: "var(--radius-wobbly-circle)",
+                    background: "#ffffff",
+                    border: "2px solid var(--fg-pencil)",
+                    color: "var(--color-whatsapp)",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
+                    boxShadow: "2px 2px 0px 0px var(--fg-pencil)",
                   }}
                 >
-                  <MessageCircle size={24} />
+                  <MessageCircle size={26} />
                 </div>
                 <div>
-                  <h3 style={{ fontSize: "1.2rem", color: "#ffffff", margin: 0 }}>
+                  <h3 style={{ fontSize: "1.35rem", color: "var(--fg-pencil)", margin: 0 }}>
                     Instant WhatsApp Support
                   </h3>
-                  <span style={{ fontSize: "0.8rem", color: "var(--emerald-400)" }}>
+                  <span style={{ fontSize: "0.95rem", color: "var(--color-emerald)", fontWeight: 700 }}>
                     Quick response during working hours
                   </span>
                 </div>
@@ -93,8 +95,8 @@ export default function Contact() {
 
               <p
                 style={{
-                  fontSize: "0.9rem",
-                  color: "var(--text-muted)",
+                  fontSize: "1.05rem",
+                  color: "var(--text-secondary)",
                   lineHeight: "1.5",
                   marginBottom: "1.25rem",
                 }}
@@ -107,8 +109,9 @@ export default function Contact() {
             </div>
 
             {/* Academy Contact Info Card */}
-            <div className="glass-card" style={{ padding: "2rem" }}>
-              <h3 style={{ fontSize: "1.2rem", marginBottom: "1.25rem", color: "#ffffff" }}>
+            <div className="glass-card" style={{ padding: "2rem", position: "relative" }}>
+              <div className="thumbtack" aria-hidden="true" />
+              <h3 style={{ fontSize: "1.35rem", marginBottom: "1.25rem", color: "var(--fg-pencil)" }}>
                 Academy Contact Information
               </h3>
 

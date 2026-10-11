@@ -123,7 +123,9 @@ export default function Home() {
             {/* Headline */}
             <h1 style={{ marginBottom: "1.5rem" }}>
               Build Real Skills. <br />
-              <span className="gradient-accent">Create Your Future.</span>
+              <span className="wavy-underline" style={{ color: "var(--color-accent)" }}>
+                Create Your Future.
+              </span>
             </h1>
 
             {/* Description */}
@@ -197,7 +199,7 @@ export default function Home() {
       {/* =================================================================
           C. FEATURED COURSES SECTION
          ================================================================= */}
-      <section className="section" style={{ backgroundColor: "rgba(15, 23, 42, 0.4)" }}>
+      <section className="section" style={{ backgroundColor: "var(--bg-secondary)" }}>
         <div className="container">
           <div className="section-header">
             <span className="section-tag">
@@ -266,7 +268,15 @@ export default function Home() {
             {whyChooseUsPillars.map((pillar, idx) => {
               const IconComp = pillar.icon;
               return (
-                <div key={idx} className="glass-card" style={{ padding: "2rem" }}>
+                <div
+                  key={idx}
+                  className="glass-card"
+                  style={{
+                    padding: "2rem",
+                    transform: idx % 2 === 0 ? "rotate(-1deg)" : "rotate(1deg)",
+                  }}
+                >
+                  <div className="thumbtack" aria-hidden="true" />
                   <div
                     style={{
                       display: "flex",
@@ -294,7 +304,7 @@ export default function Home() {
       {/* =================================================================
           E. LEARNING JOURNEY
          ================================================================= */}
-      <section className="section" style={{ backgroundColor: "rgba(15, 23, 42, 0.4)" }}>
+      <section className="section" style={{ backgroundColor: "var(--bg-secondary)" }}>
         <div className="container">
           <div className="section-header">
             <span className="section-tag">Methodology That Works</span>
@@ -374,7 +384,7 @@ export default function Home() {
       {/* =================================================================
           G. STUDENT TESTIMONIALS (HONEST PLACEHOLDER)
          ================================================================= */}
-      <section className="section" style={{ backgroundColor: "rgba(15, 23, 42, 0.4)" }}>
+      <section className="section" style={{ backgroundColor: "var(--bg-secondary)" }}>
         <div className="container container-narrow" style={{ textAlign: "center" }}>
           <div className="section-header" style={{ marginBottom: "2rem" }}>
             <span className="section-tag">Student Community</span>
@@ -441,18 +451,14 @@ export default function Home() {
       <section className="section" style={{ paddingTop: "2rem", paddingBottom: "5rem" }}>
         <div className="container">
           <div
-            className="glass-card"
+            className="glass-card postit-card"
             style={{
               padding: "4rem 2rem",
               textAlign: "center",
-              background:
-                "linear-gradient(135deg, rgba(20, 30, 51, 0.9) 0%, rgba(10, 14, 23, 0.95) 100%)",
-              border: "1px solid var(--border-accent)",
-              boxShadow: "var(--shadow-glow)",
               position: "relative",
-              overflow: "hidden",
             }}
           >
+            <div className="tape-strip" aria-hidden="true" />
             <div style={{ maxWidth: "680px", margin: "0 auto", position: "relative", zIndex: 1 }}>
               <span className="section-tag" style={{ marginBottom: "1.5rem" }}>
                 Admissions Now Open

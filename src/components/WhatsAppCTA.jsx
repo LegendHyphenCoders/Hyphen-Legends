@@ -121,6 +121,7 @@ export default function WhatsAppCTA({
             aria-labelledby="modal-title"
             onClick={(e) => e.stopPropagation()}
           >
+            <div className="tape-strip" aria-hidden="true" />
             <div className="modal-header">
               <div className="modal-icon-warning">
                 <AlertCircle size={22} />

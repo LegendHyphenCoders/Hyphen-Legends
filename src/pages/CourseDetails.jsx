@@ -268,6 +268,7 @@ export default function CourseDetails() {
             {/* Right Sticky Sidebar */}
             <aside>
               <div className="details-sidebar-card">
+                <div className="tape-strip" aria-hidden="true" />
                 <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "0.5rem" }}>
                   <span className="course-price-label">Proposed Tuition Fee</span>
                   <span className="course-fee-proposed-badge">Introductory Rate</span>

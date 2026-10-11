@@ -30,7 +30,7 @@ export default function About() {
           </span>
           <h1 style={{ marginBottom: "1.5rem" }}>
             Real Engineering Skills. <br />
-            <span className="gradient-accent">Zero Hype.</span>
+            <span className="wavy-underline" style={{ color: "var(--color-accent)" }}>Zero Hype.</span>
           </h1>
           <p
             style={{
@@ -53,7 +53,7 @@ export default function About() {
       </section>
 
       {/* The Problem & Our Solution */}
-      <section className="section" style={{ backgroundColor: "rgba(15, 23, 42, 0.4)" }}>
+      <section className="section" style={{ backgroundColor: "var(--bg-secondary)" }}>
         <div className="container">
           <div className="grid-2" style={{ alignItems: "center", gap: "3rem" }}>
             <div>
@@ -85,7 +85,8 @@ export default function About() {
             </div>
 
             {/* Pillars Card */}
-            <div className="glass-card" style={{ padding: "2.5rem" }}>
+            <div className="glass-card" style={{ padding: "2.5rem", position: "relative" }}>
+              <div className="tape-strip" aria-hidden="true" />
               <h3 style={{ marginBottom: "1.5rem", fontSize: "1.25rem" }}>Our Core Training Pillars</h3>
               <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
                 {siteConfig.pillars.map((pillar, idx) => (
@@ -151,16 +152,16 @@ export default function About() {
       </section>
 
       {/* Academic Honesty Commitment */}
-      <section className="section" style={{ backgroundColor: "rgba(15, 23, 42, 0.4)" }}>
+      <section className="section" style={{ backgroundColor: "var(--bg-secondary)" }}>
         <div className="container container-narrow">
           <div
-            className="glass-card"
+            className="glass-card postit-card"
             style={{
               padding: "3rem",
-              border: "1px solid rgba(16, 185, 129, 0.3)",
-              background: "rgba(15, 23, 42, 0.8)",
+              position: "relative",
             }}
           >
+            <div className="tape-strip" aria-hidden="true" />
             <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1.25rem" }}>
               <ShieldCheck size={28} className="text-emerald-400" />
               <h3 style={{ margin: 0, fontSize: "1.4rem" }}>Our Transparency Pledge</h3>

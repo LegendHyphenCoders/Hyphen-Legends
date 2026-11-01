@@ -95,10 +95,3 @@ export async function apiSubmitContact(payload) {
 
   return data;
 }
-
-/**
- * Returns the direct URL to export and download all leads as an Excel file (.xlsx)
- */
-export function getExportExcelUrl() {
-  return getApiUrl('/api/leads/export-excel');
-}

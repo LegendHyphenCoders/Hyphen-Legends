@@ -108,7 +108,11 @@ export default function AdmissionForm({ defaultCourseSlug, onFormSuccess }) {
       }
     } catch (err) {
       console.warn("API submission error (or network issue):", err.message);
-      setServerError(err.message || "Failed to submit admission form. Please try again or reach out on WhatsApp.");
+      let errorMsg = err.message || "Failed to submit admission form. Please try again or reach out on WhatsApp.";
+      if (err.name === "TypeError" && (err.message === "Failed to fetch" || err.message.includes("fetch"))) {
+        errorMsg = "Unable to connect to the academy server. Please check your connection or reach out directly on WhatsApp.";
+      }
+      setServerError(errorMsg);
     } finally {
       setIsSubmitting(false);
     }

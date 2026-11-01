@@ -257,10 +257,6 @@ The repository includes a git-tracked Excel workbook located at `leads.xlsx` in 
      cd backend
      npm run sync-leads
      ```
-4. **Live Browser Download**:
-   - Download the latest Excel file directly from the browser:
-     - Click **Download Leads (.xlsx)** on the Contact page sidebar.
-     - Or visit the direct API endpoint: `http://localhost:5000/api/leads/export-excel` (or on your deployed backend `https://<backend-url>/api/leads/export-excel`).
 
 ---
 

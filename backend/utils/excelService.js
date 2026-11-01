@@ -12,9 +12,29 @@ export const REPO_EXCEL_PATH = path.resolve(__dirname, '../../leads.xlsx');
 // Safe sequential queue to avoid concurrent file write collisions
 let writeQueue = Promise.resolve();
 
+async function safeWriteFile(workbook, targetPath, retries = 3) {
+  for (let attempt = 1; attempt <= retries; attempt++) {
+    try {
+      await workbook.xlsx.writeFile(targetPath);
+      return;
+    } catch (err) {
+      if (err.code === 'EBUSY' && attempt < retries) {
+        console.warn(`⚠️ [Excel] File is locked by another program (attempt ${attempt}/${retries}). Retrying...`);
+        await new Promise((r) => setTimeout(r, 600));
+      } else {
+        throw err;
+      }
+    }
+  }
+}
+
 function enqueueExcelOperation(operation) {
   writeQueue = writeQueue.then(operation).catch((err) => {
-    console.error('❌ Excel write error:', err.message);
+    if (err.code === 'EBUSY') {
+      console.warn('⚠️ [Excel] leads.xlsx is currently open in Microsoft Excel. Please close it so new leads can be automatically saved.');
+    } else {
+      console.error('❌ Excel write error:', err.message);
+    }
   });
   return writeQueue;
 }
@@ -174,7 +194,7 @@ export async function ensureExcelFileExists() {
   }
 
   const workbook = await buildCompleteWorkbook([], []);
-  await workbook.xlsx.writeFile(REPO_EXCEL_PATH);
+  await safeWriteFile(workbook, REPO_EXCEL_PATH);
   console.log(`📄 Initialized new leads Excel file at: ${REPO_EXCEL_PATH}`);
 }
 
@@ -220,7 +240,7 @@ export async function appendAdmissionLead(admission) {
 
     formatDataRow(row);
 
-    await workbook.xlsx.writeFile(REPO_EXCEL_PATH);
+    await safeWriteFile(workbook, REPO_EXCEL_PATH);
     console.log(`📊 [Excel] Appended admission lead: ${admission.fullName} -> ${REPO_EXCEL_PATH}`);
   });
 }
@@ -264,7 +284,7 @@ export async function appendContactMessage(contact) {
 
     formatDataRow(row);
 
-    await workbook.xlsx.writeFile(REPO_EXCEL_PATH);
+    await safeWriteFile(workbook, REPO_EXCEL_PATH);
     console.log(`📊 [Excel] Appended contact message: ${contact.fullName} -> ${REPO_EXCEL_PATH}`);
   });
 }
@@ -283,7 +303,7 @@ export async function generateExcelBuffer(admissions, contacts) {
 export async function writeAllLeadsToFile(admissions, contacts) {
   return enqueueExcelOperation(async () => {
     const workbook = await buildCompleteWorkbook(admissions, contacts);
-    await workbook.xlsx.writeFile(REPO_EXCEL_PATH);
+    await safeWriteFile(workbook, REPO_EXCEL_PATH);
     console.log(`📊 [Excel] Fully synchronized ${admissions.length} admissions and ${contacts.length} contact records into: ${REPO_EXCEL_PATH}`);
   });
 }

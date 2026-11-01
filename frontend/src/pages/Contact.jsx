@@ -15,11 +15,9 @@ import {
   GraduationCap,
   MessageSquare,
   Server,
-  FileSpreadsheet,
-  Download,
 } from "lucide-react";
 import { siteConfig } from "../config/site";
-import { apiSubmitContact, getExportExcelUrl } from "../config/api";
+import { apiSubmitContact } from "../config/api";
 import AdmissionForm from "../components/AdmissionForm";
 import WhatsAppCTA from "../components/WhatsAppCTA";
 import Button from "../components/Button";
@@ -96,7 +94,11 @@ export default function Contact() {
       });
     } catch (err) {
       console.warn("Contact form submission error:", err.message);
-      setServerError(err.message || "Failed to submit message. Please reach out via WhatsApp directly.");
+      let errorMsg = err.message || "Failed to submit message. Please reach out via WhatsApp directly.";
+      if (err.name === "TypeError" && (err.message === "Failed to fetch" || err.message.includes("fetch"))) {
+        errorMsg = "Unable to connect to the academy server. Please check your connection or reach out directly on WhatsApp.";
+      }
+      setServerError(errorMsg);
     } finally {
       setIsSubmitting(false);
     }
@@ -479,53 +481,6 @@ export default function Contact() {
               <p style={{ fontSize: "0.85rem", color: "var(--text-secondary)", lineHeight: "1.5", margin: 0 }}>
                 Connected to Express REST API &amp; MongoDB Atlas. Admission leads are stored in the <code>admissions</code> collection; messages are stored in <code>contactmessages</code>.
               </p>
-            </div>
-
-            {/* Team Lead Export Card */}
-            <div
-              className="glass-card"
-              style={{
-                padding: "1.5rem",
-                background: "var(--bg-paper-card)",
-                border: "2px solid var(--fg-pencil)",
-                boxShadow: "3px 3px 0 var(--fg-pencil)",
-                marginTop: "1.25rem",
-              }}
-            >
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "0.5rem",
-                  marginBottom: "0.5rem",
-                }}
-              >
-                <FileSpreadsheet size={18} color="var(--color-emerald)" />
-                <strong style={{ fontSize: "0.95rem", color: "var(--fg-pencil)" }}>
-                  Team Leads Sync:
-                </strong>
-              </div>
-              <p style={{ fontSize: "0.85rem", color: "var(--text-secondary)", lineHeight: "1.5", marginBottom: "0.85rem" }}>
-                All contact &amp; admission registrations automatically record into <code>leads.xlsx</code>. Download the updated Excel file anytime:
-              </p>
-              <a
-                href={getExportExcelUrl()}
-                download="HL_Stack_Leads.xlsx"
-                className="btn btn-secondary"
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: "0.5rem",
-                  width: "100%",
-                  justifyContent: "center",
-                  padding: "0.5rem 1rem",
-                  fontSize: "0.875rem",
-                  textDecoration: "none",
-                }}
-              >
-                <Download size={15} />
-                <span>Download Leads (.xlsx)</span>
-              </a>
             </div>
           </div>
         </div>

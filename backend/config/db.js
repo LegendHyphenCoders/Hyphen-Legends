@@ -20,11 +20,8 @@ export async function connectDB() {
 
     console.log(`MongoDB Atlas connected: ${conn.connection.host} [database: ${conn.connection.name}]`);
   } catch (error) {
-    console.error(`MongoDB connection error: ${error.message}`);
-    // Allow server to run or retry without crashing unhandled
-    if (process.env.NODE_ENV === 'production') {
-      process.exit(1);
-    }
+    console.error(`MongoDB connection warning: ${error.message}`);
+    console.warn('⚠️ Server will operate in resilient mode. Submissions will record to leads.xlsx.');
   }
 
   mongoose.connection.on('disconnected', () => {

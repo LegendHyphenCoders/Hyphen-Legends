@@ -1,5 +1,6 @@
 import { Admission } from '../models/Admission.js';
 import { sendNotificationEmail } from '../config/mailer.js';
+import { appendAdmissionLead, generateExcelBuffer } from '../utils/excelService.js';
 
 /**
  * @route   POST /api/admissions
@@ -18,6 +19,11 @@ export async function createAdmission(req, res, next) {
       currentStatus,
       preferredTiming,
       message,
+    });
+
+    // Auto-update leads.xlsx on disk row by row
+    appendAdmissionLead(admission).catch((excelErr) => {
+      console.error('Background Excel update error:', excelErr.message);
     });
 
     // Send email notification asynchronously
@@ -55,6 +61,24 @@ export async function getAdmissions(req, res, next) {
   try {
     const admissions = await Admission.find().sort({ createdAt: -1 });
     return res.status(200).json({ count: admissions.length, admissions });
+  } catch (error) {
+    next(error);
+  }
+}
+
+/**
+ * @route   GET /api/admissions/export-excel
+ * @desc    Export all admissions to an Excel (.xlsx) file download
+ * @access  Public / Internal
+ */
+export async function exportAdmissionsExcel(req, res, next) {
+  try {
+    const admissions = await Admission.find().sort({ createdAt: -1 });
+    const buffer = await generateExcelBuffer(admissions, []);
+
+    res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+    res.setHeader('Content-Disposition', 'attachment; filename="HL_Stack_Admissions.xlsx"');
+    return res.send(Buffer.from(buffer));
   } catch (error) {
     next(error);
   }

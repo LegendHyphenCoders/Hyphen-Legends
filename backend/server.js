@@ -6,12 +6,17 @@ import { connectDB } from './config/db.js';
 import admissionRoutes from './routes/admissionRoutes.js';
 import courseRoutes from './routes/courseRoutes.js';
 import contactRoutes from './routes/contactRoutes.js';
+import leadRoutes from './routes/leadRoutes.js';
 import { errorHandler } from './middleware/errorHandler.js';
+import { ensureExcelFileExists } from './utils/excelService.js';
 
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+
+// Initialize leads.xlsx if it does not exist yet
+ensureExcelFileExists().catch((err) => console.error('Failed to initialize leads.xlsx:', err.message));
 
 // Connect to MongoDB Atlas
 await connectDB();
@@ -55,6 +60,7 @@ app.get('/api/health', (req, res) => {
 app.use('/api/admissions', admissionRoutes);
 app.use('/api/courses', courseRoutes);
 app.use('/api/contact', contactRoutes);
+app.use('/api/leads', leadRoutes);
 
 // Undefined API route handler
 app.use('/api/*', (req, res) => {

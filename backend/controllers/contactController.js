@@ -1,5 +1,6 @@
 import { ContactMessage } from '../models/ContactMessage.js';
 import { sendNotificationEmail } from '../config/mailer.js';
+import { appendContactMessage, generateExcelBuffer } from '../utils/excelService.js';
 
 /**
  * @route   POST /api/contact
@@ -15,6 +16,11 @@ export async function createContactMessage(req, res, next) {
       email,
       phone: phone || '',
       message,
+    });
+
+    // Auto-update leads.xlsx on disk row by row
+    appendContactMessage(contact).catch((excelErr) => {
+      console.error('Background Excel update error:', excelErr.message);
     });
 
     // Send email notification asynchronously
@@ -36,6 +42,38 @@ export async function createContactMessage(req, res, next) {
       message: 'Contact message received successfully.',
       contact,
     });
+  } catch (error) {
+    next(error);
+  }
+}
+
+/**
+ * @route   GET /api/contact
+ * @desc    Get all contact messages (for admin reference)
+ * @access  Public / Internal
+ */
+export async function getContactMessages(req, res, next) {
+  try {
+    const messages = await ContactMessage.find().sort({ createdAt: -1 });
+    return res.status(200).json({ count: messages.length, messages });
+  } catch (error) {
+    next(error);
+  }
+}
+
+/**
+ * @route   GET /api/contact/export-excel
+ * @desc    Export all contact inquiries to an Excel (.xlsx) file download
+ * @access  Public / Internal
+ */
+export async function exportContactExcel(req, res, next) {
+  try {
+    const contacts = await ContactMessage.find().sort({ createdAt: -1 });
+    const buffer = await generateExcelBuffer([], contacts);
+
+    res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+    res.setHeader('Content-Disposition', 'attachment; filename="HL_Stack_Contact_Messages.xlsx"');
+    return res.send(Buffer.from(buffer));
   } catch (error) {
     next(error);
   }

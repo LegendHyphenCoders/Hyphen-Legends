@@ -231,6 +231,39 @@ curl -X POST http://localhost:5000/api/contact \
 
 ---
 
+## 📊 Automatic Excel Lead Tracking (`leads.xlsx`)
+
+The repository includes a git-tracked Excel workbook located at `leads.xlsx` in the project root.
+
+### Features
+1. **Auto-Append on Registration**:
+   - Every time a candidate submits an **Admission Enquiry** or a **Contact Message** on the website, their details are automatically appended row-by-row into `leads.xlsx` on disk.
+   - Sheet 1: `Admissions` (Date, Full Name, Email, Phone, Enquired Course, Status, Preferred Timing, Message, Lead Status, ID).
+   - Sheet 2: `Contact Inquiries` (Date, Full Name, Email, Phone, Message Content, Read Status, ID).
+2. **Push & Pull via Git**:
+   - `leads.xlsx` is tracked by git. After new submissions arrive locally, simply run:
+     ```bash
+     git add leads.xlsx
+     git commit -m "chore: sync new leads to excel"
+     git push
+     ```
+   - Teammates can then pull the latest leads anytime:
+     ```bash
+     git pull
+     ```
+3. **Database-to-Excel Sync Command**:
+   - Teammates can synchronize all records directly from MongoDB Atlas into their local `leads.xlsx` anytime:
+     ```bash
+     cd backend
+     npm run sync-leads
+     ```
+4. **Live Browser Download**:
+   - Download the latest Excel file directly from the browser:
+     - Click **Download Leads (.xlsx)** on the Contact page sidebar.
+     - Or visit the direct API endpoint: `http://localhost:5000/api/leads/export-excel` (or on your deployed backend `https://<backend-url>/api/leads/export-excel`).
+
+---
+
 ## 🎨 Design System Integrity
 - **Hand-Drawn Sketched Aesthetic**: Kalam & Patrick Hand fonts, warm paper `#fdfbf7`, soft pencil `#2d2d2d`, ballpoint blue `#2d5da1`, highlighter red `#ff4d4d`.
 - **Pure Vanilla CSS**: Zero Tailwind, zero external UI component kits.

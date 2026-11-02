@@ -6,6 +6,7 @@ export default defineConfig({
   plugins: [react()],
   server: {
     port: 3000,
+    host: true, // Listen on all network addresses (0.0.0.0) so mobile devices on the same Wi-Fi can connect
     open: true,
     proxy: {
       '/api': {

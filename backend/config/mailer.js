@@ -5,23 +5,30 @@ import nodemailer from 'nodemailer';
  * Falls back to console logging when SMTP credentials are not configured.
  */
 let transporter = null;
+let transporterInitialized = false;
 
-const isSmtpConfigured = Boolean(
-  process.env.SMTP_HOST &&
-  process.env.SMTP_USER &&
-  process.env.SMTP_PASS
-);
+function getTransporter() {
+  if (!transporterInitialized) {
+    transporterInitialized = true;
+    const isSmtpConfigured = Boolean(
+      process.env.SMTP_HOST &&
+      process.env.SMTP_USER &&
+      process.env.SMTP_PASS
+    );
 
-if (isSmtpConfigured) {
-  transporter = nodemailer.createTransport({
-    host: process.env.SMTP_HOST,
-    port: Number(process.env.SMTP_PORT) || 587,
-    secure: Number(process.env.SMTP_PORT) === 465,
-    auth: {
-      user: process.env.SMTP_USER,
-      pass: process.env.SMTP_PASS,
-    },
-  });
+    if (isSmtpConfigured) {
+      transporter = nodemailer.createTransport({
+        host: process.env.SMTP_HOST,
+        port: Number(process.env.SMTP_PORT) || 587,
+        secure: Number(process.env.SMTP_PORT) === 465,
+        auth: {
+          user: process.env.SMTP_USER,
+          pass: process.env.SMTP_PASS,
+        },
+      });
+    }
+  }
+  return transporter;
 }
 
 /**
@@ -29,8 +36,9 @@ if (isSmtpConfigured) {
  */
 export async function sendNotificationEmail({ subject, html, text }) {
   const recipient = process.env.NOTIFY_EMAIL || 'admissions@hlstack.edu';
+  const mailTransporter = getTransporter();
 
-  if (!transporter) {
+  if (!mailTransporter) {
     console.log('\n[MAILER MOCK (SMTP not configured)]');
     console.log(`To: ${recipient}`);
     console.log(`Subject: ${subject}`);

@@ -114,6 +114,12 @@ npm run dev
 ```
 Open [http://localhost:3000](http://localhost:3000) in your browser. All API requests route to `http://localhost:5000` with automatic fallback to local dataset if the backend is paused.
 
+> [!TIP]
+> You can also start both backend and frontend together from the root folder with a single command:
+> ```bash
+> npm run dev
+> ```
+
 ---
 
 ### Step 4: Deploy Backend to Render

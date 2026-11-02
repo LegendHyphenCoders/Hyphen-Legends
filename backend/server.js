@@ -2,6 +2,8 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import { connectDB } from './config/db.js';
 import admissionRoutes from './routes/admissionRoutes.js';
 import courseRoutes from './routes/courseRoutes.js';
@@ -10,7 +12,12 @@ import leadRoutes from './routes/leadRoutes.js';
 import { errorHandler } from './middleware/errorHandler.js';
 import { ensureExcelFileExists } from './utils/excelService.js';
 
-dotenv.config();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Ensure .env is loaded from backend directory even if started from project root
+dotenv.config({ path: path.resolve(__dirname, '.env') });
+dotenv.config(); // fallback to current working directory
 
 const app = express();
 const PORT = process.env.PORT || 5000;

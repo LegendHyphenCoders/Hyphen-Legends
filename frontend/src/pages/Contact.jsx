@@ -228,6 +228,26 @@ export default function Contact() {
                     <div>
                       <strong style={{ color: "var(--color-accent)" }}>Submission Notice:</strong>
                       <p className="mt-0.5" style={{ color: "var(--fg-pencil)" }}>{serverError}</p>
+                      <div className="mt-2">
+                        <a
+                          href={whatsappUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="btn btn-whatsapp"
+                          style={{
+                            display: "inline-flex",
+                            alignItems: "center",
+                            gap: "0.4rem",
+                            padding: "0.35rem 0.85rem",
+                            fontSize: "0.85rem",
+                            textDecoration: "none",
+                          }}
+                        >
+                          <MessageCircle size={15} />
+                          <span>Chat on WhatsApp Directly</span>
+                          <ExternalLink size={12} />
+                        </a>
+                      </div>
                     </div>
                   </div>
                 )}

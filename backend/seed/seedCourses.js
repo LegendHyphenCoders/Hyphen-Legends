@@ -1,7 +1,13 @@
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import { Course } from '../models/Course.js';
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+dotenv.config({ path: path.resolve(__dirname, '../.env') });
 dotenv.config();
 
 const coursesSeedData = [
@@ -11,7 +17,7 @@ const coursesSeedData = [
     category: 'Data & AI',
     level: 'beginner',
     duration: '4 months',
-    tuition: 5999,
+    tuition: 10999,
     shortDescription:
       'Transform raw business data into actionable visual insights using Excel, SQL, Power BI, and Python.',
     featured: true,
@@ -70,7 +76,7 @@ const coursesSeedData = [
     category: 'Data & AI',
     level: 'intermediate',
     duration: '5 months',
-    tuition: 8999,
+    tuition: 13999,
     shortDescription:
       'Master statistical modeling, predictive algorithms, data wrangling, and end-to-end predictive systems in Python.',
     featured: true,
@@ -125,7 +131,7 @@ const coursesSeedData = [
     category: 'Data & AI',
     level: 'advanced',
     duration: '4 months',
-    tuition: 9999,
+    tuition: 12999,
     shortDescription:
       'Deep dive into advanced algorithms, neural network architectures, computer vision, and modern NLP architectures.',
     featured: true,
@@ -180,7 +186,7 @@ const coursesSeedData = [
     category: 'Software Engineering',
     level: 'intermediate',
     duration: '5 months',
-    tuition: 8999,
+    tuition: 11999,
     shortDescription:
       'Build scalable modern web applications from front to back with React, Node.js, Express, MongoDB, and PostgreSQL.',
     featured: true,
@@ -235,7 +241,7 @@ const coursesSeedData = [
     category: 'Software Engineering',
     level: 'beginner',
     duration: '4 months',
-    tuition: 7999,
+    tuition: 10999,
     shortDescription:
       'Enterprise software engineering with Java 17+, Object-Oriented Design, Spring Boot microservices, and Hibernate/JPA.',
     featured: false,
@@ -290,7 +296,7 @@ const coursesSeedData = [
     category: 'Finance & Accounting',
     level: 'beginner',
     duration: '2 months',
-    tuition: 4999,
+    tuition: 8999,
     shortDescription:
       'Practical accounting, GST computation, TDS, payroll processing, and financial reporting with Tally Prime.',
     featured: false,
@@ -345,7 +351,7 @@ const coursesSeedData = [
     category: 'Software Engineering',
     level: 'beginner',
     duration: '2 months',
-    tuition: 2999,
+    tuition: 5999,
     shortDescription:
       'Master Python from basic syntax to object-oriented programming, data structures, automation scripts, and file APIs.',
     featured: false,
@@ -400,7 +406,7 @@ const coursesSeedData = [
     category: 'Data & AI',
     level: 'beginner',
     duration: '2 months',
-    tuition: 2999,
+    tuition: 6999,
     shortDescription:
       'The ultimate corporate analyst duo: Complex Excel modeling, Power Query, automated reporting, and relational SQL queries.',
     featured: false,
@@ -448,6 +454,84 @@ const coursesSeedData = [
       title: 'Executive SaaS Metric Cockpit (SQL + Excel)',
       description:
         'Live analytical dashboard tracking Monthly Recurring Revenue (MRR), churn, and customer acquisition costs with direct database connection.',
+    },
+  },
+  {
+    slug: 'advanced-excel',
+    title: 'Advanced Excel',
+    category: 'Data & AI',
+    level: 'beginner',
+    duration: '1 month',
+    tuition: 3999,
+    shortDescription:
+      'Master spreadsheet modeling, dynamic array formulas, nested lookups, Power Query automation, and executive dashboards.',
+    featured: false,
+    isActive: true,
+    modules: [
+      {
+        title: 'Modern Dynamic Formulas & Spreadsheet Logic',
+        lessons: 2,
+        topics: [
+          'XLOOKUP, FILTER, SORT, UNIQUE, and multi-condition IFS logic',
+          'Advanced text and date manipulation: DATEVALUE, TEXTSPLIT, NETWORKDAYS',
+          'Dynamic named ranges and audit shortcuts',
+          'Multi-tier conditional formatting and custom data validation drop-downs',
+        ],
+      },
+      {
+        title: 'Power Query ETL, Pivot Tables & Executive Dashboards',
+        lessons: 2,
+        topics: [
+          'Automated file imports, appending multiple files, and unpivoting',
+          'Cleaning messy text, column splitting, and null value handling',
+          'Advanced Pivot Tables, calculated items, and interactive slicers',
+          'Designing high-impact C-suite KPI executive dashboards',
+        ],
+      },
+    ],
+    capstone: {
+      title: 'Automated Regional Sales Consolidation Pipeline',
+      description:
+        'Zero-touch Power Query workbook combining 12 monthly regional sheets into an executive revenue summary.',
+    },
+  },
+  {
+    slug: 'sql',
+    title: 'SQL for Analytics',
+    category: 'Data & AI',
+    level: 'beginner',
+    duration: '1 month',
+    tuition: 4999,
+    shortDescription:
+      'Master relational database querying, complex JOINs, aggregations, Window Functions, and query optimization.',
+    featured: false,
+    isActive: true,
+    modules: [
+      {
+        title: 'Relational Architecture, Queries & Aggregations',
+        lessons: 2,
+        topics: [
+          'Relational concepts: Primary Keys, Foreign Keys, schemas, and data types',
+          'SELECT, WHERE filtering, operators (LIKE, IN, BETWEEN), and ORDER BY',
+          'Aggregations: COUNT, SUM, AVG, MIN, MAX with GROUP BY and HAVING filters',
+          'String and date transformation functions in PostgreSQL and MySQL',
+        ],
+      },
+      {
+        title: 'Complex Joins, Subqueries & Window Functions',
+        lessons: 2,
+        topics: [
+          'Table JOINs: INNER, LEFT, RIGHT, FULL OUTER, and CROSS joins',
+          'Subqueries, correlated subqueries, and Common Table Expressions (CTEs)',
+          'Analytical Window Functions: ROW_NUMBER, RANK, DENSE_RANK, LAG, LEAD',
+          'Query optimization, execution plan analysis (EXPLAIN), and index design',
+        ],
+      },
+    ],
+    capstone: {
+      title: 'E-Commerce Customer Lifecycle & Cohort SQL Study',
+      description:
+        'Complex CTEs and Window Functions on 500,000+ orders to calculate monthly customer retention rates.',
     },
   },
 ];

@@ -354,7 +354,7 @@ export default function Home() {
           <div className="grid-4">
             {instructors.map((inst) => (
               <div key={inst.id} className="instructor-card">
-                <span className="sample-badge">Sample Profile</span>
+                {inst.isPlaceholder && <span className="sample-badge">Sample Profile</span>}
                 <div className="instructor-header">
                   <div className="instructor-avatar">{inst.avatarPlaceholder}</div>
                   <div className="instructor-info">
@@ -370,18 +370,6 @@ export default function Home() {
             ))}
           </div>
 
-          <div
-            style={{
-              marginTop: "2rem",
-              textAlign: "center",
-              fontSize: "0.85rem",
-              color: "var(--text-dim)",
-            }}
-          >
-            <em>
-              Note: The above instructor cards display sample mentor profiles. Genuine instructor biographies will be added as new faculty join cohorts.
-            </em>
-          </div>
         </div>
       </section>
 

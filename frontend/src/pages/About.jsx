@@ -205,7 +205,7 @@ export default function About() {
           <div className="grid-4">
             {instructors.map((inst) => (
               <div key={inst.id} className="instructor-card">
-                <span className="sample-badge">Sample Profile</span>
+                {inst.isPlaceholder && <span className="sample-badge">Sample Profile</span>}
                 <div className="instructor-header">
                   <div className="instructor-avatar">{inst.avatarPlaceholder}</div>
                   <div className="instructor-info">

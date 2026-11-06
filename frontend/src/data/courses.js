@@ -661,26 +661,6 @@ export const courses = [
       "Calculate salary pay heads, professional tax deductions, and generate pay slips.",
       "Prepare final Trial Balance, Profit & Loss, and Balance Sheet reports for auditors.",
     ],
-    projects: [
-      {
-        title: "Retail Trading Firm Complete Year Bookkeeping",
-        description:
-          "Managed end-to-end accounting for a multi-product trading business from company setup to balance sheet.",
-        tech: ["Tally Prime", "GST Compliance", "MS Excel"],
-      },
-      {
-        title: "Manufacturing Unit Inventory & Cost Center Tracking",
-        description:
-          "Configured raw material consumption, manufacturing journals, and godown transfers for a textile business.",
-        tech: ["Tally Prime", "Inventory Management", "Cost Centers"],
-      },
-      {
-        title: "Quarterly GST & TDS Reconciliation Case Study",
-        description:
-          "Reconciled 3 months of supplier purchase registers against GSTR-2B to identify unclaimed input tax credit.",
-        tech: ["Tally Prime", "Tax Filing Prep", "Excel Reconciliation"],
-      },
-    ],
     prerequisites: [
       "Basic understanding of mathematics and arithmetic.",
       "Commerce background is beneficial but not required — basic accounting is taught from the start.",

@@ -242,32 +242,34 @@ export default function CourseDetails() {
                 </div>
               </div>
 
-              {/* Real-World Capstone Projects */}
-              <div className="course-details-card">
-                <h3>
-                  <FolderGit2 size={22} className="text-violet-400" />
-                  <span>Real-World Capstone Projects</span>
-                </h3>
-                <p style={{ color: "var(--text-muted)", fontSize: "0.925rem", marginBottom: "1.25rem" }}>
-                  Every student builds and deploys these production-caliber portfolio projects with verifiable GitHub repositories:
-                </p>
+              {/* Real-World Capstone Projects (only if applicable) */}
+              {course.projects && course.projects.length > 0 && (
+                <div className="course-details-card">
+                  <h3>
+                    <FolderGit2 size={22} className="text-violet-400" />
+                    <span>Real-World Capstone Projects</span>
+                  </h3>
+                  <p style={{ color: "var(--text-muted)", fontSize: "0.925rem", marginBottom: "1.25rem" }}>
+                    Every student builds and deploys these production-caliber portfolio projects with verifiable GitHub repositories:
+                  </p>
 
-                <div>
-                  {course.projects?.map((proj, idx) => (
-                    <div key={idx} className="project-item-card">
-                      <h4>{proj.title}</h4>
-                      <p>{proj.description}</p>
-                      <div className="project-tech-tags">
-                        {proj.tech.map((t, tIdx) => (
-                          <span key={tIdx} className="project-tech-tag">
-                            {t}
-                          </span>
-                        ))}
+                  <div>
+                    {course.projects.map((proj, idx) => (
+                      <div key={idx} className="project-item-card">
+                        <h4>{proj.title}</h4>
+                        <p>{proj.description}</p>
+                        <div className="project-tech-tags">
+                          {proj.tech.map((t, tIdx) => (
+                            <span key={tIdx} className="project-tech-tag">
+                              {t}
+                            </span>
+                          ))}
+                        </div>
                       </div>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
                 </div>
-              </div>
+              )}
 
               {/* Who Should Join & Prerequisites */}
               <div className="grid-2">
@@ -349,7 +351,13 @@ export default function CourseDetails() {
                   </div>
                   <div className="details-sidebar-perk">
                     <CheckCircle2 size={16} />
-                    <span><strong>Portfolio:</strong> 3+ Verified Capstones</span>
+                    <span>
+                      {course.projects && course.projects.length > 0 ? (
+                        <><strong>Portfolio:</strong> {course.projects.length} Verified Capstone{course.projects.length > 1 ? "s" : ""}</>
+                      ) : (
+                        <><strong>Practical:</strong> Real Commercial Case Studies</>
+                      )}
+                    </span>
                   </div>
                 </div>
 

@@ -53,10 +53,17 @@ export default function CourseCard({ course }) {
             <BarChart size={12} />
             <span>{course.skillLevel}</span>
           </span>
-          <span className="course-meta-pill">
-            <FolderGit2 size={12} />
-            <span>{course.projects?.length || 3} Real Projects</span>
-          </span>
+          {course.projects && course.projects.length > 0 ? (
+            <span className="course-meta-pill">
+              <FolderGit2 size={12} />
+              <span>{course.projects.length} Real Projects</span>
+            </span>
+          ) : (
+            <span className="course-meta-pill">
+              <CheckCircle2 size={12} />
+              <span>Practical Case Studies</span>
+            </span>
+          )}
           <span className="course-meta-pill">
             <Code2 size={12} />
             <span>{course.modules?.length || 4} Modules</span>

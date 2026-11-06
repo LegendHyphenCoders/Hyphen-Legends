@@ -339,11 +339,6 @@ const coursesSeedData = [
         ],
       },
     ],
-    capstone: {
-      title: 'Retail Trading Firm Complete Year Bookkeeping',
-      description:
-        'Managed end-to-end accounting for a multi-product trading business from company setup to year-end audited balance sheet in Tally Prime.',
-    },
   },
   {
     slug: 'python-programming',

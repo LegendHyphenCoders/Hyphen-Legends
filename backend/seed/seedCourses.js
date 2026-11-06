@@ -296,7 +296,7 @@ const coursesSeedData = [
     category: 'Finance & Accounting',
     level: 'beginner',
     duration: '2 months',
-    tuition: 8999,
+    tuition: 7499,
     shortDescription:
       'Practical accounting, GST computation, TDS, payroll processing, and financial reporting with Tally Prime.',
     featured: false,
